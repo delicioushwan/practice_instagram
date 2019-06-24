@@ -1,0 +1,10 @@
+posts
+	{id: uuid, user_id:uuid, content:char, created_at:date, updated_at: date}
+commnets
+	{id:uuid, post_id:uuid, user_id:uuid, commnet:char, created_at:date, updated_at:date}
+likes
+	{id:uuid, post_id:uuid, comment_id:uuid, user_id:uuid, created_at:date, updated_at:date}
+users
+	{id:uuid, user_id:char, passward:char, email:char, name:char, follower:int, following:int, posts:int, created_at:date, updated_at:date}
+friends
+	{id:uuid, follower_id:uuid, following_id:uuid}

@@ -1,10 +1,16 @@
-import React from 'react';
-import './style.css';
+import React, { Component } from 'react';
+import { hot } from 'react-hot-loader';
+import Home from './pages/home';
+import './style/style.css';
 
-const App = () => (
-  <div className="App">
-    <h1> Hello, World! </h1>
-  </div>
-);
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <Home />
+      </div>
+    );
+  }
+}
 
-export default App;
+export default hot(module)(App);
