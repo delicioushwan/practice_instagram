@@ -1,0 +1,26 @@
+.sign_up h2 {
+  margin: 0 40px 20px;
+  text-align: center;
+  color: #999;
+  font-weight: 600;
+  font-size: 20px;
+  font-size: 17px;
+}
+.sign_up > div:last-child {
+  margin: 15px 60px;
+  color: #999;
+  font-size:14px;
+}
+
+.sign_up > form > span.error {
+  display: block;
+  font-size: 10px;
+  color: red;
+  text-align: right;
+  margin: 0 40px -5px
+}
+
+.noshow {
+  display: none;
+}
+
