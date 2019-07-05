@@ -1,0 +1,83 @@
+.mypage {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width:100%;
+}
+
+.nav {
+  position: fixed;
+  width: 100%;
+  background: red;
+  height: 74px;
+}
+
+.mypage_container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding-top: 74px;
+  box-sizing: border-box;
+}
+
+.mypage_container > div:first-child {
+  margin: 0 auto 30px;
+  padding: 60px 20px 0 ;
+  box-sizing: content-box;
+  min-width: 350px;
+  max-width: 980px;
+}
+
+.mypage_top_container_B {
+  display: flex;
+  flex-direction: row;
+}
+
+.mypage_top_container_B > div:first-child {
+  width: 150px;
+  height: 150px;
+}
+
+.profile_B {
+  display:flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  background: green;
+}
+
+.profile_B > div:nth-child(2) {
+  padding: 12px 0;
+}
+
+.profile_B > div:nth-child(2) > ul {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  justify-content: space-around;
+  padding: 0;
+}
+
+.profile_B > div:nth-child(2) > ul > li {
+  width: 33.3%;
+  text-align: center;
+}
+
+.profile_B > div:nth-child(2) > ul > li > span {
+  color: #999;
+}
+
+.profile_B > div:nth-child(2) > ul > li > span > span {
+  color: black;
+  display: block;
+  font-weight: 600;
+}
+
+.profile_B > div:nth-child(3) {
+  padding: 0 16px 21px;
+}
+
+.posts {
+  display:flex;
+  background: blue;
+}

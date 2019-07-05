@@ -12,12 +12,12 @@
   font-size:14px;
 }
 
-.sign_up > form > span.error {
+.sign_up .error {
+  text-align: right;
+  margin: 0 40px -5px;
+  color: #ed4956;
   display: block;
   font-size: 10px;
-  color: red;
-  text-align: right;
-  margin: 0 40px -5px
 }
 
 .noshow {

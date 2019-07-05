@@ -1,4 +1,4 @@
-.home {
+.sign_in {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -9,7 +9,7 @@
   background: #fafafa;  
   min-height: 100%;
 }
-.home > div:first-child > div:first-child {
+.sign_in > div:first-child > div:first-child {
   max-width: 350px;
   margin-top: 12px;
   padding-bottom: 20px;
@@ -19,11 +19,11 @@
   background: #fff;
 }
 
-.home > div:first-child > div > div:first-child {
+.sign_in > div:first-child > div > div:first-child {
   margin: 0 40px;
 }
 
-.home > div:first-child > div > div:first-child > div:first-child {
+.sign_in > div:first-child > div > div:first-child > div:first-child {
   font-size: 0;
   height: 51px;
   width: 175px;
@@ -34,7 +34,7 @@
   background-position: center;
 }
 
-.home form > div {
+.sign_in form > div {
   margin:6px 0;
   font-size: 16px;
   height: 36px;
@@ -44,7 +44,7 @@
   border-radius: 3px; 
 }
 
-.home form > div input {
+.sign_in form > div input {
   box-sizing: border-box;
   width:100%;
   height: 100%;
@@ -52,16 +52,16 @@
   border: none;
 }
 
-.home > div:first-child > div > div:first-child > div:nth-child(3) {
+.sign_in > div:first-child > div > div:first-child > div:nth-child(3) {
   text-align: center;
 }
 
-.home > div:first-child > div > div:first-child > div:nth-child(3) button.active {
+.sign_in > div:first-child > div > div:first-child > div:nth-child(3) button.active {
   opacity: 1;
   cursor: pointer;
 }
 
-.home > div:first-child > div > div:first-child > div:nth-child(3) button {
+.sign_in > div:first-child > div > div:first-child > div:nth-child(3) button {
   margin: 10px 0;
   background: #3897f0;
   border: 1px solid #3897f0;
@@ -75,12 +75,12 @@
   opacity: 0.3;
 }
 
-.home > div:first-child > div > div:first-child > div:nth-child(4) {
+.sign_in > div:first-child > div > div:first-child > div:nth-child(4) {
   display: flex;
   flex-direction: row;
 }
 
-.home > div:first-child > div > div:first-child > div:nth-child(4) > div {
+.sign_in > div:first-child > div > div:first-child > div:nth-child(4) > div {
   flex:1.5;
   margin-top: 15px;
   margin-bottom: 25px;
@@ -90,7 +90,7 @@
 
 }
 
-.home > div:first-child > div > div:first-child > div:nth-child(4) > div:nth-child(2) {
+.sign_in > div:first-child > div > div:first-child > div:nth-child(4) > div:nth-child(2) {
   flex:1;
   text-align: center;
   background: white;
@@ -99,15 +99,16 @@
   font-weight: 600;
 }
 
-.home > div:first-child > div > div:first-child > div:nth-child(5) {
+.sign_in > div:first-child > div > div:first-child > div:nth-child(5) {
   text-align: center;
 }
 
-.home > div:first-child > div > div:first-child > div:nth-child(5) > a {
+.sign_in > div:first-child > div > div:first-child > div:nth-child(5) > a {
   display:inline-block;
   padding-left: 25px;
   color: #385185;
   margin-top: 8px;
+  margin-bottom: 10px;
   font-size: 14px;
   font-weight: 600;
   background: url('https://upload.wikimedia.org/wikipedia/commons/f/ff/Facebook_logo_36x36.svg');
@@ -118,29 +119,39 @@
   text-decoration-line: none
 }
 
-.home > div:first-child > div > div:first-child > div:nth-child(6) {
-  color: red;
-  margin-top: 20px;
+.warn {
+  margin: 20px 0;
+  text-align: center;
+  color: #ed4956;
+  font-size: 14px;
+}
+
+.show {
+  display: none;
+}
+
+.sign_in > div:first-child > div > div:first-child > div:nth-child(7) {
+  margin-top: 10px;
   font-size: 12px;
   text-align: center;
   color: #003569;
   cursor: pointer;
 }
 
-.home > div:first-child > div:nth-child(2) {
+.sign_in > div:first-child > div:nth-child(2) {
   margin-top:10px;
   padding: 10px 0;
   border: 1px solid #e6e6e6;
   background: white;
 }
 
-.home > div:first-child > div:nth-child(2) > div {
+.sign_in > div:first-child > div:nth-child(2) > div {
   margin:15px;
   font-size: 14px;
   text-align: center;
 }
 
-.home > div:first-child > div:nth-child(2) span {
+.sign_in > div:first-child > div:nth-child(2) span {
   color: #3897f0;
   font-weight: 600;
   cursor: pointer;

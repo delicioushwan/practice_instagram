@@ -3,6 +3,7 @@ module.exports = {
     browser: true,
     es6: true,
   },
+  parser: "babel-eslint",
   extends: 'airbnb',
   globals: {
     Atomics: 'readonly',
@@ -28,5 +29,10 @@ module.exports = {
     "react/destructuring-assignment": 0,
     "react/prop-types": 0,
     "no-nested-ternary": 0,
+    "consistent-return": 0,
+    "react/no-unused-state": 0,
+    "object-curly-newline": 0,
+    "max-len": 0,
+    "no-param-reassign": 0,
   },
 };
