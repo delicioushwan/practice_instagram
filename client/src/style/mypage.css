@@ -140,16 +140,60 @@
   position: relative;
 }
 
-.posts > div > div > div > div:nth-child(2) {
+.posts > div > div > div > div.active > div{
   box-sizing: border-box;
   text-align: center;
   position: absolute;
   width:100%;
   height: 100%;
-  background: gray;
-  opacity: 0.5;
-  cursor: pointer;  
+  background: rgba(0,0,0,0.3);
+  cursor: pointer;
 }
+
+.posts > div > div > div > div > div ul {
+  display: none;
+}
+
+.posts > div > div > div > div.active > div ul  {
+  list-style: none;
+  margin: auto;
+  display: flex;
+  padding: 0;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.posts > div > div > div > div > div li:first-child {
+  margin-right: 30px;
+}
+
+.heart {
+  background: url('../../images/heart.png');
+  background-size:contain;
+  background-repeat: no-repeat;
+  margin-right:10px;
+  display: inline-block;
+  width:18px;
+  height: 18px;
+}
+
+
+.bubble_speech {
+  background: url('../../images/bubble_speech.png');
+  background-size:contain;
+  background-repeat: no-repeat;
+  margin-right:7px;
+  display: inline-block;
+  width:18px;
+  height: 18px;
+  vertical-align: baseline;
+}
+
+.posts > div > div > div > div.active > div ul > li >span:nth-child(2) {
+  vertical-align: baseline;
+}
+
 
 .posts > div > div > div > div > img {
   object-fit: cover;

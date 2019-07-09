@@ -35,7 +35,6 @@ class MyPage extends Component {
   }
 
   render = () => {
-    console.log(this.state)
     const { posts, user } = this.state;
 
     return (
