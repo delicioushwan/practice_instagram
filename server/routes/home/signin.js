@@ -24,7 +24,6 @@ router.post('/', (req, res) => {
       return res.send({ data: 'ok', token, user: result.id });
     })
     .catch((err) => {
-      console.log(err);
       res.send(err);
     });
 });

@@ -24,15 +24,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     follower_count: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
     },
     following_count: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
     },
     post_count: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
     },
     about: {
       type: DataTypes.STRING(45),

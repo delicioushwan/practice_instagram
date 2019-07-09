@@ -4,42 +4,47 @@ import { hot } from 'react-hot-loader';
 
 export default hot(module)(class extends Component {
   render = () => {
+    const { main_iamge, about, follower_count, following_count, name, post_count } = this.props.user;
     return (
       <div className="mypage_top_container_B">
         <div>
-          userprofile_picture
+          <div style={{ background: main_iamge ? `url(${main_iamge})` : 'blue' }} />
         </div>
         <div className="profile_B">
           <div>
-            <div>user_name</div>
-            <div>edit</div>
+            <div>{name}</div>
+            <div>
+              <button type="button">프로필 편집</button>
+              <button type="button">게시글 쓰기</button>
+            </div>
+            <div style={{ display: 'none' }}>follow</div>
           </div>
 
           <div>
             <ul>
               <li>
                 <span>
-                  posts
-                  <span>number</span>
+                  게시글
+                  <span>{post_count}</span>
                 </span>
               </li>
               <li>
                 <span>
-                  following
-                  <span>number</span>
+                  팔로우
+                  <span>{following_count}</span>
                 </span>
               </li>
               <li>
                 <span>
-                  follower
-                  <span>number</span>
+                  팔로워
+                  <span>{follower_count}</span>
                 </span>
               </li>
             </ul>
           </div>
 
           <div>
-          about
+            {about || 'aboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutabout'}
           </div>
         </div>
       </div>

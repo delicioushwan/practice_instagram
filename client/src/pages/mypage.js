@@ -3,11 +3,14 @@ import Axios from 'axios';
 import { hot } from 'react-hot-loader';
 import '../style/mypage.css';
 import ProfileBig from '../component/mypage/profileBig';
+import Posts from '../component/mypage/posts';
 
 class MyPage extends Component {
   constructor() {
     super();
     this.state = {
+      posts: [],
+      user: {},
     };
   }
 
@@ -32,19 +35,18 @@ class MyPage extends Component {
   }
 
   render = () => {
+    console.log(this.state)
     const { posts, user } = this.state;
 
     return (
-      <div className="mypage" onClick={console.log(posts, user)}>
+      <div className="mypage">
         <div className="nav">
           nav
         </div>
         <div className="mypage_container">
           <div>
-            <ProfileBig />
-            <div className="posts">
-                posts
-            </div>
+            <ProfileBig user={user} />
+            <Posts posts={posts} />
           </div>
         </div>
       </div>

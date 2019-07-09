@@ -10,7 +10,11 @@ router.get('/', async (req, res) => {
     });
     const posts = await models.posts.findAll({
       where: { user_id: req.query.user },
-      include: { model: models.pictures, as: 'pictures', attributes: ['pic'] },
+      include: [
+        { model: models.pictures, as: 'pictures', attributes: ['pic'] },
+        { model: models.comments, as: 'comments', attributes: ['comment'] },
+        { model: models.likes, as: 'likes', attributes: ['user_id'] },
+      ],
     });
 
     res.send({ user, posts });

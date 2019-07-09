@@ -34,5 +34,8 @@ module.exports = {
     "object-curly-newline": 0,
     "max-len": 0,
     "no-param-reassign": 0,
+    "react/no-array-index-key": 0,
+    "camelcase": 0,
+    "jsx-a11y/mouse-events-have-key-events": 0,
   },
 };
