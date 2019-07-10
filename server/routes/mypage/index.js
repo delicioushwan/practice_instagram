@@ -12,7 +12,12 @@ router.get('/', async (req, res) => {
       where: { user_id: req.query.user },
       include: [
         { model: models.pictures, as: 'pictures', attributes: ['pic'] },
-        { model: models.comments, as: 'comments', attributes: ['comment'] },
+        {
+          model: models.comments,
+          as: 'comments',
+          attributes: ['comment', 'user_id'],
+          include: { model: models.users, as: 'user', attributes: ['name'] },
+        },
         { model: models.likes, as: 'likes', attributes: ['user_id'] },
       ],
     });

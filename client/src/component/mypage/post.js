@@ -6,6 +6,7 @@ export default hot(module)(class extends Component {
 
   render = () => {
     const { bundle } = this.props;
+    console.log(bundle)
     return (
       <div>
         <div onMouseOver={() => this.setState({ active: true })} onMouseLeave={() => this.setState({ active: false })}>

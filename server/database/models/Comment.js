@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   });
   Comment.associate = function (models) {
     Comment.hasMany(models.likes, { as: 'likes' });
+    Comment.belongsTo(models.users, {as: 'users'});
   };
 
   return Comment;

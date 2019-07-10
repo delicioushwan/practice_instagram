@@ -4,6 +4,8 @@ import { hot } from 'react-hot-loader';
 import '../style/mypage.css';
 import ProfileBig from '../component/mypage/profileBig';
 import Posts from '../component/mypage/posts';
+import Modal from '../component/Modal';
+import ModalPost from '../component/mypage/modalPost';
 
 class MyPage extends Component {
   constructor() {
@@ -11,6 +13,7 @@ class MyPage extends Component {
     this.state = {
       posts: [],
       user: {},
+      show: true,
     };
   }
 
@@ -34,6 +37,8 @@ class MyPage extends Component {
       .catch(() => updateApp({ currentPage: 'Home' }));
   }
 
+  modalOpen = open => this.setState({ show: open });
+
   render = () => {
     const { posts, user } = this.state;
 
@@ -48,6 +53,9 @@ class MyPage extends Component {
             <Posts posts={posts} />
           </div>
         </div>
+        <Modal show={this.state.show} close={() => this.modalOpen(false)}>
+          <ModalPost />
+        </Modal>
       </div>
     );
   }

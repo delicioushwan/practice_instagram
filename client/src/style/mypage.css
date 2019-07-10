@@ -14,13 +14,14 @@
 .mypage_container {
   height: 100%;
   padding-top: 74px;
+  padding-bottom: 30px;
   box-sizing: border-box;
   background: #fafafa;
 }
 
 .mypage_container > div:first-child {
   margin: 0 auto;
-  padding: 60px 20px 0 ;
+  padding: 60px 20px 30px ;
   box-sizing: border-box;
   background: #fafafa;
   max-width: 950px;
@@ -201,3 +202,40 @@
   height: 100%;
 }
 
+/* Modal~~ */
+.mypage .center_wrap2 {
+  height: 100%;
+  max-width: 816px;
+  background: rgba(0,0,0,0);
+  border: none;
+}
+
+.mypage .center_wrap2 > div:nth-child(2) {
+  display:none;
+}
+
+.mypage .modal {
+  height: 100%;
+}
+
+.modal_post {
+  height: 100%;
+}
+
+.modal_post > div {
+  display:flex;
+  min-width: 800px;
+  height: 100%;
+  border: 1px solid #e6e6e6;
+  border-radius: 1px;
+  background: #fff;
+  max-height: 600px;
+}
+
+.modal_post > div > div:first-child {
+  flex:2;
+}
+
+.modal_post > div > div:nth-child(2){
+  flex:1;
+}

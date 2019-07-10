@@ -52,6 +52,7 @@ class Signin extends Component {
       e.preventDefault();
       return submitActive() && this.submit();
     };
+    console.log('what is it???', this.state);
 
     return (
       <div className="sign_in">
@@ -97,7 +98,7 @@ class Signin extends Component {
             </div>
           </div>
         </div>
-        <Modal signIn={this.state} close={() => this.modal(false)}>
+        <Modal show={this.state.show} close={() => this.modal(false)}>
           {this.state.show === 'signUp' ? <SignUp home={this.props.home} fetch={this.fetch} close={() => this.modal(false)} />
             : this.state.show === 'findPassword' ? <FindPassword home={this.props.home} fetch={this.fetch} close={() => this.modal(false)} />
               : false}
