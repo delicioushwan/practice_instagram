@@ -1,33 +1,8 @@
 const router = require('express').Router();
-const models = require('../../database/models');
 
-
-router.get('/', async (req, res) => {
-  try {
-    const user = await models.users.findOne({
-      where: { id: req.query.user },
-      attributes: ['id', 'name', 'follower_count', 'following_count', 'post_count', 'about', 'main_image'],
-    });
-    const posts = await models.posts.findAll({
-      where: { user_id: req.query.user },
-      include: [
-        { model: models.pictures, as: 'pictures', attributes: ['pic'] },
-        {
-          model: models.comments,
-          as: 'comments',
-          attributes: ['comment', 'user_id'],
-          include: { model: models.users, as: 'user', attributes: ['name'] },
-        },
-        { model: models.likes, as: 'likes', attributes: ['user_id'] },
-      ],
-    });
-
-    res.send({ user, posts });
-  } catch (e) {
-    console.log(e);
-    res.send(e);
-  }
-});
+router.use('/like', require('./like'));
+router.use('/commentlike', require('./commentLike'));
+router.use('/', require('./mypage'));
 
 router.use((err, req, res, next) => {
   if (err.name === 'ValidationError') {

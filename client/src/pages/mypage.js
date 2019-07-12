@@ -13,7 +13,7 @@ class MyPage extends Component {
     this.state = {
       posts: [],
       user: {},
-      show: true,
+      show: false,
     };
   }
 
@@ -40,7 +40,8 @@ class MyPage extends Component {
   modalOpen = open => this.setState({ show: open });
 
   render = () => {
-    const { posts, user } = this.state;
+    console.log('mypage', this.state);
+    const { posts, user, show, bundle } = this.state;
 
     return (
       <div className="mypage">
@@ -49,12 +50,12 @@ class MyPage extends Component {
         </div>
         <div className="mypage_container">
           <div>
-            <ProfileBig user={user} />
-            <Posts posts={posts} />
+            {user && <ProfileBig user={user} />}
+            <Posts posts={posts} MyPage={this} />
           </div>
         </div>
-        <Modal show={this.state.show} close={() => this.modalOpen(false)}>
-          <ModalPost />
+        <Modal show={show} close={() => this.modalOpen(false)}>
+          {bundle && <ModalPost post={bundle && bundle} MyPage={this} />}
         </Modal>
       </div>
     );

@@ -7,7 +7,13 @@ router.post('/', (req, res) => {
     signUpUserId, signUpPassword, signUpEmail, signUpName,
   } = req.body;
   models.users.create({
-    user_account: signUpUserId, password: signUpPassword, email: signUpEmail, name: signUpName, follow_count: 0, following_count: 0, posts_count: 0,
+    user_account: signUpUserId,
+    password: signUpPassword,
+    email: signUpEmail,
+    name: signUpName,
+    follow_count: 0,
+    following_count: 0,
+    posts_count: 0,
   })
     .then(() => {
       res.send('ok');

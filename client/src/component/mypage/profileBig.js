@@ -4,11 +4,11 @@ import { hot } from 'react-hot-loader';
 
 export default hot(module)(class extends Component {
   render = () => {
-    const { main_iamge, about, follower_count, following_count, name, post_count } = this.props.user;
+    const { main_image, about, follower_count, following_count, name, post_count } = this.props.user;
     return (
       <div className="mypage_top_container_B">
         <div>
-          <div style={{ background: main_iamge ? `url(${main_iamge})` : 'blue' }} />
+          <div style={{ background: main_image ? `url(${main_image}) center center / cover no-repeat` : 'blue' }} />
         </div>
         <div className="profile_B">
           <div>

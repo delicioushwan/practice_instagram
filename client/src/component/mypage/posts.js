@@ -24,7 +24,6 @@ export default hot(module)(class extends Component {
           result.push(temp);
         }
       });
-      console.log(result);
       return result;
     };
 
@@ -32,9 +31,9 @@ export default hot(module)(class extends Component {
       <div className="posts">
         {postBundle().map((bundle, i) => (
           <div key={i}>
-            <Post bundle={bundle[0]} />
-            <Post bundle={bundle[1]} />
-            <Post bundle={bundle[2]} />
+            <Post bundle={bundle[0]} MyPage={this.props.MyPage} />
+            <Post bundle={bundle[1]} MyPage={this.props.MyPage} />
+            <Post bundle={bundle[2]} MyPage={this.props.MyPage} />
           </div>
         ))}
       </div>

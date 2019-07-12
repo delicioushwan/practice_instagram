@@ -52,7 +52,6 @@ class Signin extends Component {
       e.preventDefault();
       return submitActive() && this.submit();
     };
-    console.log('what is it???', this.state);
 
     return (
       <div className="sign_in">

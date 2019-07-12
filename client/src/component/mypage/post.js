@@ -4,11 +4,12 @@ import { hot } from 'react-hot-loader';
 export default hot(module)(class extends Component {
   state ={ active: false }
 
+  updateMyPage = state => this.props.MyPage.setState(state);
+
   render = () => {
     const { bundle } = this.props;
-    console.log(bundle)
     return (
-      <div>
+      <div onClick={() => this.updateMyPage({ bundle, show: true })}>
         <div onMouseOver={() => this.setState({ active: true })} onMouseLeave={() => this.setState({ active: false })}>
           {bundle ? (
             <div className={this.state.active ? 'active' : ''}>
