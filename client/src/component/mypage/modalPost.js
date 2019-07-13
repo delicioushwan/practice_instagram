@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
 import Axios from 'axios';
 import Comment from './comments';
+import CommentInput from './commentInput';
 
 export default hot(module)(class extends Component {
   updateMyPage = state => this.props.MyPage.setState(state);
@@ -31,11 +32,13 @@ export default hot(module)(class extends Component {
               <span>{post.users.name}</span>
             </div>
             <div>
-              <div style={{ display: 'flex' }}>
-                <div style={{ background: getPost.users.main_image ? `url(${getPost.users.main_image}) center center / cover no-repeat` : 'red', width: '32px', height: '32px', margin: 'auto 20px auto 0', borderRadius: '50%', flex: 'none' }} />
-                <div style={{ margin: 'auto 0' }}>
-                  <span>{getPost.users.name}</span>
-                  <span>{getPost.content}</span>
+              <div>
+                <div style={{ display: 'flex' }}>
+                  <div style={{ background: getPost.users.main_image ? `url(${getPost.users.main_image}) center center / cover no-repeat` : 'red', width: '32px', height: '32px', margin: 'auto 20px auto 0', borderRadius: '50%', flex: 'none' }} />
+                  <div style={{ margin: 'auto 0' }}>
+                    <span>{getPost.users.name}</span>
+                    <span>{getPost.content}</span>
+                  </div>
                 </div>
               </div>
               {getPost.comments.map((com, i) => <Comment key={i} comment={com} MyPage={this.props.MyPage} />)}
@@ -44,13 +47,12 @@ export default hot(module)(class extends Component {
               <span className={hitHeart ? 'hit_heart' : ''} onClick={like} />
               <div>
                 <span>좋아요</span>
-                <span />
-                {getPost.likes.length}
+                <span style={{ marginLeft: '5px' }}>{getPost.likes.length}</span>
                 <span>개</span>
               </div>
             </div>
             <div>
-              <input placeholder="Add a comment..." />
+              <CommentInput post={post} MyPage={this.props.MyPage} />
             </div>
           </div>
         </div>

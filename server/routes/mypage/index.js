@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 router.use('/like', require('./like'));
 router.use('/commentlike', require('./commentLike'));
+router.use('/createComment', require('./createComment'));
 router.use('/', require('./mypage'));
 
 router.use((err, req, res, next) => {

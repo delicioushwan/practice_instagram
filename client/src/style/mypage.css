@@ -276,6 +276,7 @@
 .modal_post > div > .right_container > div:nth-child(2){
   padding: 16px;
   overflow: auto;
+  border-bottom: 1px solid #efefef;
 }
 
 .modal_post .heart_comment {
@@ -292,19 +293,34 @@
   background: url('https://img.icons8.com/color/48/000000/hearts.png') center center / cover no-repeat;
 }
 
-.modal_post > div > .right_container > div:nth-child(2) > div {
+.modal_post > div > .right_container > div:nth-child(2) > div > div {
   padding-top: 12px;
+  font-size: 14px;
 }
 
-.modal_post > div > .right_container > div:nth-child(2) > div > div > span:first-child {
+.modal_post > div > .right_container > div:nth-child(2) {
+  min-height: 150px;
+  height: calc(100% - 72px - 43px - 40px - 32px);
+}
+
+.modal_post > div > .right_container > div:nth-child(2) > div > div > div > span:first-child {
   display: inline-block;
   margin-right: 5px;
   font-weight: 600;
 }
 
+.modal_post > div > .right_container > div:nth-child(2) > div > div:nth-child(2) {
+  display: inline-block;
+  color: #999;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .modal_post > div > .right_container > div:nth-child(3) {
   display:flex;
   padding: 4px 16px 0;
+  border-bottom: 1px solid #efefef;
 }
 
 .modal_post > div > .right_container > div:nth-child(3) > span {
@@ -324,10 +340,15 @@
 
 .modal_post > div > .right_container > div:nth-child(3) > div:nth-child(2) {
   margin: auto 0;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #262626;
 }
 
 .modal_post > div > .right_container > div:nth-child(4) > input {
   width: 90%;
+  height: 30px;
   margin: 0 15px;
   border: none;
 }

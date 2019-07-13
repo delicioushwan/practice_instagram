@@ -19,12 +19,19 @@ export default hot(module)(class extends Component {
     const hitHeart = comment.likes.findIndex(x => x.user_id === user.id) !== -1;
 
     return (
-      <div onClick={likeComment} style={{ display: 'flex', position: 'relative' }}>
-        <div style={{ background: comment.users.main_image ? `url(${comment.users.main_image}) center center / cover no-repeat` : 'red', width: '32px', height: '32px', margin: 'auto 20px auto 0', borderRadius: '50%', flex: 'none' }} />
-        <div style={{ margin: 'auto 0', marginRight: '15px' }}>
-          <span>{comment.users.name}</span>
-          <span>{comment.comment}</span>
-          <div className={hitHeart ? 'heart_comment hit' : 'heart_comment'} />
+      <div>
+        <div onClick={likeComment} style={{ display: 'flex', position: 'relative' }}>
+          <div style={{ background: comment.users.main_image ? `url(${comment.users.main_image}) center center / cover no-repeat` : 'red', width: '32px', height: '32px', margin: 'auto 20px auto 0', borderRadius: '50%', flex: 'none' }} />
+          <div style={{ margin: 'auto 0', marginRight: '15px' }}>
+            <span>{comment.users.name}</span>
+            <span>{comment.comment}</span>
+            <div className={hitHeart ? 'heart_comment hit' : 'heart_comment'} />
+          </div>
+        </div>
+        <div style={{ marginLeft: '52px' }}>
+          <span>좋아요</span>
+          <span style={{ marginLeft: '5px' }}>{comment.likes.length}</span>
+          <span>개</span>
         </div>
       </div>
     );
