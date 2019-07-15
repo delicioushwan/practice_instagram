@@ -25,14 +25,17 @@ module.exports = (sequelize, DataTypes) => {
     follower_count: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: 0,
     },
     following_count: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: 0,
     },
     post_count: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: 0,
     },
     about: {
       type: DataTypes.STRING(45),
@@ -43,9 +46,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
   }, {
-    timestamps: true,
-    underscored: true,
-  });
+      timestamps: true,
+      underscored: true,
+    });
   User.associate = function (models) {
     User.hasMany(models.comments, { as: 'comments' });
     User.hasMany(models.posts, { as: 'posts' });
