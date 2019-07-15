@@ -6,6 +6,7 @@ import ProfileBig from '../component/mypage/profileBig';
 import Posts from '../component/mypage/posts';
 import Modal from '../component/Modal';
 import ModalPost from '../component/mypage/modalPost';
+import CreatePost from '../component/mypage/CreatePost';
 
 class MyPage extends Component {
   constructor() {
@@ -14,6 +15,7 @@ class MyPage extends Component {
       posts: [],
       user: {},
       show: false,
+      onStage: 'createPost',
     };
   }
 
@@ -47,7 +49,8 @@ class MyPage extends Component {
           </div>
         </div>
         <Modal show={show} close={() => this.modalOpen(false)}>
-          {bundle && <ModalPost post={bundle && bundle} MyPage={this} />}
+          {this.state.onStage === 'bundle' ? bundle && <ModalPost post={bundle && bundle} MyPage={this} />
+            : this.state.onStage === 'createPost' ? <CreatePost /> : null}
         </Modal>
       </div>
     );
