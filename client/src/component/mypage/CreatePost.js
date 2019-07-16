@@ -12,7 +12,7 @@ export default hot(module)(class extends Component {
     this.state.picture && console.log(this.state.picture.value);
     return (
       <div>
-        <form action="upload" method="post" encType="multipart/form-data">
+        <form action="http://localhost:4000/upload" method="post" encType="multipart/form-data">
           <input name="uploadImage" type="file" multiple onChange={e => this.setState({ picture: e.target })} />
           <input type="submit" />
         </form>
