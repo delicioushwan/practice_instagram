@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
+import Axios from 'axios';
 
 
 export default hot(module)(class extends Component {
@@ -8,14 +9,8 @@ export default hot(module)(class extends Component {
   }
 
   render = () => {
-    console.log(this.state);
-    this.state.picture && console.log(this.state.picture.value);
     return (
       <div>
-        <form action="upload" method="post" encType="multipart/form-data">
-          <input name="uploadImage" type="file" multiple onChange={e => this.setState({ picture: e.target })} />
-          <input type="submit" />
-        </form>
       </div>
     );
   }
