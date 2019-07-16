@@ -11,14 +11,13 @@ export default hot(module)(class extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData();
-    const image = document.querySelector('input[type="file"]').files[0];
-    data.append('uploadImage', image);
-    console.log(image)
-
+    for (let i = 0; i < this.state.picture.length; i++) {
+      data.append('uploadImage', this.state.picture[i]);
+    }
     Axios.request({
-      url: 'http://localhost:4000/upload',
+      url: 'http://localhost:4000/mypage/createPost',
       method: 'POST',
-      body: data,
+      data,
       withCredentials: true,
       config: { headers: { 'Content-Type': 'multipart/form-data' } },
     })
@@ -26,10 +25,12 @@ export default hot(module)(class extends Component {
   }
 
   render = () => {
+    console.log(this.state.picture);
+    console.log(this.state.picture.length)
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <input name="uploadImage" type="file" multiple onChange={e => this.setState({ picture: e.target })} />
+          <input name="uploadImage" type="file" multiple onChange={e => this.setState({ picture: e.target.files })} />
           <input type="submit" />
         </form>
       </div>
