@@ -3,6 +3,7 @@ import { hot } from 'react-hot-loader';
 import Axios from 'axios';
 import Comment from './comments';
 import CommentInput from './commentInput';
+import CarouselPictures from './CarouselPictures';
 
 export default hot(module)(class extends Component {
   updateMyPage = state => this.props.MyPage.setState(state);
@@ -23,9 +24,7 @@ export default hot(module)(class extends Component {
     return (
       <div className="modal_post">
         <div>
-          <div className="pics">
-            {post && <img src={post.pictures[0].pic} alt="" />}
-          </div>
+          <CarouselPictures pictures={post.pictures} MyPage={this.props.MyPage} />
           <div className="right_container">
             <div>
               <div style={{ background: post.users.main_image ? `url(${post.users.main_image}) center center / cover no-repeat` : 'red', width: '32px', height: '32px', margin: 'auto 20px auto 0', borderRadius: '50%' }} />

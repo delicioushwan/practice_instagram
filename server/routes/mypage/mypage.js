@@ -23,6 +23,7 @@ router.get('/', async (req, res) => {
         },
         { model: models.pictures, as: 'pictures', attributes: ['pic'] },
       ],
+      order: [['id', 'DESC']],
     });
     res.send({ user, posts });
   } catch (e) {

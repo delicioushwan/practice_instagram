@@ -3,8 +3,7 @@ const multer = require('multer');
 const multerS3 = require('multer-s3');
 const AWS = require('aws-sdk');
 const models = require('../../database/models');
-const sendPost = require('../sendPost');
-
+const sendUser = require('../sendUser');
 
 AWS.config.loadFromPath(__dirname + '/../../config/awsconfig.json');
 const s3 = new AWS.S3();
@@ -19,16 +18,11 @@ const upload = multer({
   }),
 });
 
-router.post('/', upload.array('uploadImage', 4), async (req, res) => {
-  const pics = [];
-  models.posts.create({ user_id: req.cookies.user1, content: req.body.content })
-    .then((result) => {
-      for (let i = 0; i < req.files.length; i++) {
-        pics.push({ pic: req.files[i].location, post_id: result.id });
-      }
-    })
-    .then(() => models.pictures.bulkCreate(pics)
-      .then(() => sendPost(req, res)));
+router.post('/', upload.single('main_image'), async (req, res) => {
+  models.users.update(
+    { main_image: req.file.location },
+    { where: { id: req.cookies.user1 } },
+  ).then(() => sendUser(req, res));
 });
 
 module.exports = router;

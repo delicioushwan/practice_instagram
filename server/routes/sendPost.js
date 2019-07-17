@@ -19,6 +19,7 @@ module.exports = (req, res) => {
         { model: models.users, as: 'users', attributes: ['name', 'main_image'] },
         { model: models.pictures, as: 'pictures', attributes: ['pic'] },
       ],
+      order: [['id', 'DESC']],
     })
       .then(result => res.send(result));
   } catch (e) {

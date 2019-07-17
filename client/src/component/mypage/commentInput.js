@@ -15,7 +15,7 @@ export default hot(module)(class extends Component {
         url: 'http://localhost:4000/mypage/createComment',
         data: { comment: this.state.commentInput, post_id: post.id },
         withCredentials: true,
-      }).then(result => {console.log(result), this.updateMyPage({ posts: result.data })});
+      }).then(result => this.updateMyPage({ posts: result.data }));
       this.setState({ commentInput: '' });
     };
 

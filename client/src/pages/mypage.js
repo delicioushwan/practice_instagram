@@ -7,6 +7,7 @@ import Posts from '../component/mypage/posts';
 import Modal from '../component/Modal';
 import ModalPost from '../component/mypage/modalPost';
 import CreatePost from '../component/mypage/CreatePost';
+import EditProfile from '../component/mypage/EditProfile';
 
 class MyPage extends Component {
   constructor() {
@@ -34,9 +35,7 @@ class MyPage extends Component {
   modalOpen = open => this.setState({ show: open });
 
   render = () => {
-    console.log('mypage', this.state);
     const { posts, user, show, bundle } = this.state;
-
     return (
       <div className="mypage">
         <div className="nav">
@@ -50,7 +49,8 @@ class MyPage extends Component {
         </div>
         <Modal show={show} close={() => this.modalOpen(false)}>
           {this.state.onStage === 'bundle' ? bundle && <ModalPost post={bundle && bundle} MyPage={this} />
-            : this.state.onStage === 'createPost' ? <CreatePost MyPage={this} /> : null}
+            : this.state.onStage === 'createPost' ? <CreatePost MyPage={this} />
+              : this.state.onStage === 'edit' ? <EditProfile MyPage={this} /> : null}
         </Modal>
       </div>
     );

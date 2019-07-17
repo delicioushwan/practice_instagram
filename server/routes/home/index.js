@@ -3,6 +3,7 @@ const router = require('express').Router();
 router.use('/signup', require('./signup'));
 router.use('/signin', require('./signin'));
 router.use('/findpassword', require('./findpassword'));
+router.use('/logOut', require('./logOut'))
 
 
 router.use((err, req, res, next) => {

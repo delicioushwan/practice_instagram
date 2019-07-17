@@ -3,10 +3,23 @@ import { hot } from 'react-hot-loader';
 
 
 export default hot(module)(class extends Component {
+  state={}
+
+  static getDerivedStateFromProps(nextProps) {
+    return nextProps;
+  }
+
+
   updateMyPage = state => this.props.MyPage.setState(state);
 
+  changeStage = (stage) => {
+    this.updateMyPage({ show: true, onStage: stage });
+  }
+
+
   render = () => {
-    const { main_image, about, follower_count, following_count, name, post_count } = this.props.user;
+    const { main_image, about, follower_count, following_count, name } = this.props.user;
+    const { posts } = this.props.MyPage.state;
     return (
       <div className="mypage_top_container_B">
         <div>
@@ -16,8 +29,8 @@ export default hot(module)(class extends Component {
           <div>
             <div>{name}</div>
             <div>
-              <button type="button">프로필 편집</button>
-              <button type="button" onClick={() => this.updateMyPage({ show: true, onStage: 'createPost' })}>게시글 쓰기</button>
+              <button type="button" onClick={() => this.changeStage('edit')}>프로필 편집</button>
+              <button type="button" onClick={() => this.changeStage('createPost')}>게시글 쓰기</button>
             </div>
             <div style={{ display: 'none' }}>follow</div>
           </div>
@@ -27,7 +40,7 @@ export default hot(module)(class extends Component {
               <li>
                 <span>
                   게시글
-                  <span>{post_count}</span>
+                  <span>{posts.length}</span>
                 </span>
               </li>
               <li>

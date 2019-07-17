@@ -12,7 +12,7 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    if (document.cookie) {
+    if (document.cookie.indexOf('user=') !== -1) {
       this.setState({ currentPage: 'MyPage' });
     }
   }

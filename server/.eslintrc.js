@@ -17,5 +17,8 @@ module.exports = {
   rules: {
     "linebreak-style": 0,
     "no-param-reassign": 0,
+    "prefer-template": 0,
+    "no-path-concat": 0,
+    "no-plusplus": 0,
   },
 };
