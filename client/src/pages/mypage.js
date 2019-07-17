@@ -15,7 +15,7 @@ class MyPage extends Component {
       posts: [],
       user: {},
       show: false,
-      onStage: 'createPost',
+      onStage: '',
     };
   }
 
@@ -44,13 +44,13 @@ class MyPage extends Component {
         </div>
         <div className="mypage_container">
           <div>
-            {user && <ProfileBig user={user} />}
+            {user && <ProfileBig user={user} MyPage={this} />}
             <Posts posts={posts} MyPage={this} />
           </div>
         </div>
         <Modal show={show} close={() => this.modalOpen(false)}>
           {this.state.onStage === 'bundle' ? bundle && <ModalPost post={bundle && bundle} MyPage={this} />
-            : this.state.onStage === 'createPost' ? <CreatePost /> : null}
+            : this.state.onStage === 'createPost' ? <CreatePost MyPage={this} /> : null}
         </Modal>
       </div>
     );

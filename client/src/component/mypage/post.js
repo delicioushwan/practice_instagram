@@ -9,7 +9,7 @@ export default hot(module)(class extends Component {
   render = () => {
     const { bundle } = this.props;
     return (
-      <div onClick={() => this.updateMyPage({ bundle, show: true })}>
+      <div onClick={() => this.updateMyPage({ bundle, show: true, onStage: 'bundle' })}>
         <div onMouseOver={() => this.setState({ active: true })} onMouseLeave={() => this.setState({ active: false })}>
           {bundle ? (
             <div className={this.state.active ? 'active' : ''}>

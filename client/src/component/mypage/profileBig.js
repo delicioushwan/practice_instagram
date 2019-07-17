@@ -3,6 +3,8 @@ import { hot } from 'react-hot-loader';
 
 
 export default hot(module)(class extends Component {
+  updateMyPage = state => this.props.MyPage.setState(state);
+
   render = () => {
     const { main_image, about, follower_count, following_count, name, post_count } = this.props.user;
     return (
@@ -15,7 +17,7 @@ export default hot(module)(class extends Component {
             <div>{name}</div>
             <div>
               <button type="button">프로필 편집</button>
-              <button type="button">게시글 쓰기</button>
+              <button type="button" onClick={() => this.updateMyPage({ show: true, onStage: 'createPost' })}>게시글 쓰기</button>
             </div>
             <div style={{ display: 'none' }}>follow</div>
           </div>
