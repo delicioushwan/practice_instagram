@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const models = require('../../database/models');
-const sendPost = require('../sendPost');
+const MypagePost = require('../MypagePost');
 
 router.post('/', (req, res) => {
   models.comments.create({
@@ -8,7 +8,7 @@ router.post('/', (req, res) => {
     comment: req.body.comment,
     post_id: req.body.post_id,
   })
-    .then(() => sendPost(req, res));
+    .then(() => MypagePost(req, res));
 });
 
 module.exports = router;

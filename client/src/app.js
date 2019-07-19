@@ -20,7 +20,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.currentPage === 'Home' ? <Home App={this} test="test" />
+        {this.state.currentPage === 'Home' ? <Home App={this} />
           : this.state.currentPage === 'Feed' ? <Feed App={this} />
             : this.state.currentPage === 'MyPage' ? <MyPage App={this} />
               : <Home />

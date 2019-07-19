@@ -5,8 +5,10 @@ export default hot(module)(class extends Component {
   state={ num: 0 }
 
   componentWillUpdate = () => {
-    if (this.state.num !== 0 && this.props.MyPage.state.show === false) {
-      this.setState({ num: 0 });
+    if (this.props.MyPage) {
+      if (this.state.num !== 0 && this.props.MyPage.state.show === false) {
+        this.setState({ num: 0 });
+      }
     }
   }
 

@@ -20,25 +20,26 @@ class MyPage extends Component {
     };
   }
 
-  componentDidMount = () => {
-    const updateApp = state => this.props.App.setState(state);
+  updateApp = state => this.props.App.setState(state);
 
+  componentDidMount = () => {
     Axios.request({
       method: 'GET',
       url: 'http://localhost:4000/mypage',
       withCredentials: true,
     })
       .then(res => this.setState({ posts: res.data.posts, user: res.data.user }))
-      .catch(() => updateApp({ currentPage: 'Home' }));
+      .catch(() => this.updateApp({ currentPage: 'Home' }));
   }
 
   modalOpen = open => this.setState({ show: open });
 
   render = () => {
+    console.log(this.state)
     const { posts, user, show, bundle } = this.state;
     return (
       <div className="mypage">
-        <div className="nav">
+        <div className="nav" onClick={() => this.updateApp({ currentPage: 'Feed' })}>
           nav
         </div>
         <div className="mypage_container">

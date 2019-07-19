@@ -6,20 +6,20 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
     },
     user_account: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.STRING(255),
       allowNull: false,
       unique: true,
     },
     password: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.STRING(255),
       allowNull: false,
     },
     email: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.STRING(255),
       allowNull: false,
     },
     name: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.STRING(255),
       allowNull: false,
     },
     follower_count: {
@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 0,
     },
     about: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.STRING(255),
       allowNull: true,
     },
     main_image: {

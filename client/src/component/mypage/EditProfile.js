@@ -47,16 +47,24 @@ export default hot(module)(class extends Component {
     };
     return (
       <div className="edit_profile">
-        <div>이름변경</div>
-        <div>
-          <input onKeyPress={e => e.key === 'Enter' && editSomething('editName')} onChange={inputHandler} value={this.state.input} />
+        <div className={this.state.on !== 'name' ? '' : 'none'} onClick={() => this.setState({ input: '', on: 'name' })}>이름변경</div>
+        <div className={this.state.on === 'name' ? '' : 'none'}>
+          <input
+            onKeyPress={e => e.key === 'Enter' && editSomething('editName')}
+            onChange={inputHandler}
+            value={this.state.input}
+          />
         </div>
-        <div>about변경</div>
-        <div>
-          <input onKeyPress={e => e.key === 'Enter' && editSomething('editAbout')} onChange={inputHandler} value={this.state.input} />
+        <div className={this.state.on !== 'about' ? '' : 'none'} onClick={() => this.setState({ input: '', on: 'about' })}>about변경</div>
+        <div className={this.state.on === 'about' ? '' : 'none'}>
+          <input
+            onKeyPress={e => e.key === 'Enter' && editSomething('editAbout')}
+            onChange={inputHandler}
+            value={this.state.input}
+          />
         </div>
-        <div>내 사진 변경</div>
-        <div>
+        <div className={this.state.on !== 'pic' ? '' : 'none'} onClick={() => this.setState({ input: '', on: 'pic' })}>내 사진 변경</div>
+        <div className={this.state.on === 'pic' ? '' : 'none'}>
           <input type="file" onChange={inputPic} />
           <input type="submit" onClick={editPic} />
         </div>

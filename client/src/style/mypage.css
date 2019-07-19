@@ -175,7 +175,7 @@
   background-repeat: no-repeat;
   margin-right:10px;
   display: inline-block;
-  width:18px;
+  width:20px;
   height: 18px;
 }
 
@@ -186,7 +186,7 @@
   background-repeat: no-repeat;
   margin-right:7px;
   display: inline-block;
-  width:18px;
+  width:20px;
   height: 18px;
   vertical-align: baseline;
 }
@@ -227,6 +227,7 @@
   border: none;
   min-width: 0;
   width: auto;
+  max-height: 100%;
 }
 
 .mypage .center_wrap2 > div:nth-child(2) {
@@ -246,6 +247,7 @@
   flex:1;
   margin: 0;
   padding: 0;
+  max-width: 335px;
 }
 
 .modal_post > div > .right_container > div:first-child {
@@ -298,6 +300,11 @@
   font-weight: 600;
 }
 
+.modal_post > div > .right_container > div:nth-child(2) > div > div > div > span:nth-child(2){
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
 .modal_post > div > .right_container > div:nth-child(2) > div > div:nth-child(2) {
   display: inline-block;
   color: #999;
@@ -317,13 +324,14 @@
   width: 24px;
   height: 24px;
   margin: 7px;
+  cursor: pointer;
 }
 
-.modal_post > div > .right_container > div:nth-child(3) > span:first-child {
+.empty_heart {
   background: url('https://img.icons8.com/ios/50/000000/like.png') center center / cover no-repeat;
 }
 
-.modal_post > div > .right_container > div:nth-child(3) > span:first-child.hit_heart {
+.hit_heart {
   background: url('https://img.icons8.com/color/48/000000/hearts.png') center center / cover no-repeat;
 }
 

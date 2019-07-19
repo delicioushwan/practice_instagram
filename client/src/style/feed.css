@@ -1,0 +1,141 @@
+.feed {
+  margin: 0;
+  padding: 0;
+  background: #fafafa;
+}
+
+.feed .feed_container {
+  padding-top: 74px;
+  width: 100%
+}
+
+.feed .feed_container > div {
+  margin: 0 auto;
+  min-width: 350px;
+  max-width: 700px;
+}
+
+.feed .feed_post {
+  border-radius: 3px;
+  border: 1px solid #e6e6e6;
+  background: white;
+  margin-bottom: 60px;
+}
+
+.feed_head {
+  display: flex;
+  padding: 16px;
+}
+
+.feed_head > span {
+  margin: auto 0;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.feed .feed_picture > .carousel_pics > img {
+  object-fit: contain;
+  width: 100%;
+}
+
+.feed .feed_like {
+  display: flex;
+  margin: 10px 0;
+}
+
+.feed .feed_like > div:first-child {
+  margin: auto 10px auto 15px;
+  width:28px;
+  height: 28px;
+  cursor: pointer;
+}
+
+.empty_heart {
+  background: url('https://img.icons8.com/ios/50/000000/like.png') center center / cover no-repeat;
+}
+
+.hit_heart {
+  background: url('https://img.icons8.com/color/48/000000/hearts.png') center center / cover no-repeat;
+}
+
+.feed .feed_like > div:nth-child(2) {
+  margin: auto 0;
+  font-weight: 600;
+}
+
+.feed .feed_like > div > span:first-child {
+  margin-right: 5px;
+}
+
+.feed .feed_comment {
+  padding-left: 15px;
+}
+
+.feed .feed_comment > div:first-child {
+  margin-bottom: 15px;
+}
+
+.feed .feed_comment > div:first-child > span:first-child {
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+.feed .feed_comment > div:first-child > span:nth-child(2) {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.feed .feed_comment > div:first-child > div:nth-child(3) {
+  font-size: 14px;
+  color: rgb(153, 153, 153);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.feed .feed_comment > div:first-child > div:nth-child(3) > span:first-child {
+  margin: 0 3px;
+}
+
+
+.feed .feed_comment .comment {
+  position: relative;
+  margin-top: 3px;
+  font-size: 14px;
+  padding-right: 40px;
+}
+
+.feed .feed_comment .comment > span:first-child {
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+.feed .feed_comment .comment > span:nth-child(2) {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.feed .feed_comment .comment > div:last-child {
+  position: absolute;
+  top: 2px;
+  right: 15px;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.feed .feed_input_comment {
+  width: 100%;
+  padding: 10px 15px;
+  border-top: 1px solid #e6e6e6;
+  margin-top: 10px;
+  box-sizing: border-box;
+}
+
+.feed .feed_input_comment input {
+  width: 100%;
+  height: 30px;
+  border: none;
+  font-size: 14px;
+  outline: none;
+}

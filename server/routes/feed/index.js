@@ -1,9 +1,6 @@
 const router = require('express').Router();
 
-router.get('/', (req, res) => {
-  console.log('run*******************feedpagefeedpage**************************************');
-  console.log(req.cookies);
-});
+router.use('/', require('./feed'));
 
 router.use((err, req, res, next) => {
   console.log('testtest', req.cookies);

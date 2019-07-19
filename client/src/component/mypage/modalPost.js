@@ -43,7 +43,7 @@ export default hot(module)(class extends Component {
               {getPost.comments.map((com, i) => <Comment key={i} comment={com} MyPage={this.props.MyPage} />)}
             </div>
             <div>
-              <span className={hitHeart ? 'hit_heart' : ''} onClick={like} />
+              <span className={hitHeart ? 'hit_heart' : 'empty_heart'} onClick={like} />
               <div>
                 <span>좋아요</span>
                 <span style={{ marginLeft: '5px' }}>{getPost.likes.length}</span>

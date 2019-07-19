@@ -4,7 +4,8 @@ const models = require('../database/models');
 module.exports = (req, res) => {
   try {
     models.posts.findAll({
-      where: { user_id: req.cookies.user1 },
+      offset: 0,
+      limit: 10,
       include: [
         {
           model: models.comments,
@@ -19,9 +20,9 @@ module.exports = (req, res) => {
         { model: models.users, as: 'users', attributes: ['name', 'main_image'] },
         { model: models.pictures, as: 'pictures', attributes: ['pic'] },
       ],
-      order: [['id', 'DESC']],
+      order: [['id', 'DESC'], ['comments', 'id', 'DESC'], ['pictures', 'id']],
     })
-      .then(result => res.send(result));
+      .then(result => res.send({ posts: result, user: req.cookies.user1 }));
   } catch (e) {
     res.send(e);
   }

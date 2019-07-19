@@ -4,6 +4,10 @@
   height: 100%;
 }
 
+.none {
+  display: none;
+}
+
 .carousel_pics {
   position:relative;
   background: lightgray;
