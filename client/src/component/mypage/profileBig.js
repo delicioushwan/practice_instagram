@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
+import ProfileButton from './ProfileButton';
+import FollowButton from './FollowButton';
 
 
 export default hot(module)(class extends Component {
@@ -18,8 +20,16 @@ export default hot(module)(class extends Component {
 
 
   render = () => {
+    console.log(this.props)
     const { main_image, about, follower_count, following_count, name } = this.props.user;
-    const { posts } = this.props.MyPage.state;
+    const { posts, on } = this.props.MyPage.state;
+    const { feed } = this.props.MyPage.props.App.state;
+    const buttonSelector = () => {
+      if (feed === undefined || feed === on) {
+        return <ProfileButton MyPage={this.props.MyPage} />;
+      }
+      return <FollowButton />;
+    }
     return (
       <div className="mypage_top_container_B">
         <div>
@@ -28,10 +38,7 @@ export default hot(module)(class extends Component {
         <div className="profile_B">
           <div>
             <div>{name}</div>
-            <div>
-              <button type="button" onClick={() => this.changeStage('edit')}>프로필 편집</button>
-              <button type="button" onClick={() => this.changeStage('createPost')}>게시글 쓰기</button>
-            </div>
+            {buttonSelector()}
             <div style={{ display: 'none' }}>follow</div>
           </div>
 
@@ -59,7 +66,7 @@ export default hot(module)(class extends Component {
           </div>
 
           <div>
-            {about || 'aboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutaboutabout'}
+            {about || '무언가 쓰면 좋을텐데'}
           </div>
         </div>
       </div>

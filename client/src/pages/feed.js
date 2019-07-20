@@ -7,10 +7,12 @@ import Picture from '../component/feed/Picture';
 import Like from '../component/feed/Like';
 import Comment from '../component/feed/Comment';
 import InputComment from '../component/feed/InputComment';
+import Modal from '../component/Modal';
+import ModalPost from '../component/mypage/modalPost';
 
 
 class Feed extends Component {
-  state = { posts: [] };
+  state = { posts: [], show: false, feed: 'check' };
 
   updateApp = state => this.props.App.setState(state)
 
@@ -24,16 +26,17 @@ class Feed extends Component {
       .catch(() => this.updateApp({ currentPage: 'Home' }));
   }
 
+  modalOpen = open => this.setState({ show: open });
+
   render = () => {
-    const { posts } = this.state;
-    console.log('this.state.posts', this.state);
+    const { posts, show, bundle } = this.state;
     return (
       <div className="feed">
         <div className="feed_container">
           <div>
             {posts.map((post, i) => (
               <div key={i} className="feed_post">
-                <Head user={post.users} Feed={this} />
+                <Head post={post} Feed={this} updateApp={this.updateApp} />
                 <Picture pictures={post.pictures} Feed={this} />
                 <Like post={post} Feed={this} />
                 <Comment post={post} Feed={this} />
@@ -42,6 +45,9 @@ class Feed extends Component {
             ))}
           </div>
         </div>
+        <Modal show={show} close={() => this.modalOpen(false)}>
+          {bundle && <ModalPost post={bundle && bundle} MyPage={this} />}
+        </Modal>
       </div>
     );
   }

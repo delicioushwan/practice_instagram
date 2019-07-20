@@ -6,6 +6,8 @@ module.exports = (req, res) => {
     models.posts.findAll({
       where: { user_id: req.cookies.user1 },
       include: [
+        { model: models.likes, as: 'likes', attributes: ['user_id'] },
+        { model: models.users, as: 'users', attributes: ['name', 'main_image'] },
         {
           model: models.comments,
           as: 'comments',
@@ -15,8 +17,6 @@ module.exports = (req, res) => {
             { model: models.likes, as: 'likes', attributes: ['user_id'] },
           ],
         },
-        { model: models.likes, as: 'likes', attributes: ['user_id'] },
-        { model: models.users, as: 'users', attributes: ['name', 'main_image'] },
         { model: models.pictures, as: 'pictures', attributes: ['pic'] },
       ],
       order: [['id', 'DESC'], ['comments', 'id', 'DESC'], ['pictures', 'id']],

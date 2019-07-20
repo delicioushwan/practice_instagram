@@ -28,7 +28,7 @@ export default hot(module)(class extends Component {
       })
         .then((result) => {
           this.setState({ input: '' });
-          this.updateMypage({ show: false, user: result.data });
+          this.updateMyPage({ show: false, user: result.data });
         });
     };
 

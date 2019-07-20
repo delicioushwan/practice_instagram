@@ -10,17 +10,26 @@ export default hot(module)(class extends Component {
 
   render = () => {
     const { post } = this.props;
-    const { posts, user } = this.props.MyPage.state;
+    const { posts, feed, user } = this.props.MyPage.state;
+    const userInfo = feed ? user : user.id;
+    const data = feed ? { post_id: post.id, user } : { post_id: post.id };
+    const newSet = (result) => {
+      if (feed) {
+        this.updateMyPage({ posts: result.data.posts, user: result.data.user });
+      } else {
+        this.updateMyPage({ posts: result.data });
+      }
+    };
     const like = () => {
       Axios.request({
         method: 'POST',
         url: 'http://localhost:4000/mypage/like',
-        data: { post_id: post.id },
+        data,
         withCredentials: true,
-      }).then(result => this.updateMyPage({ posts: result.data }));
+      }).then(result => newSet(result));
     };
     const getPost = posts[posts.findIndex(x => x.id === this.props.post.id)];
-    const hitHeart = getPost.likes.findIndex(x => x.user_id === user.id) !== -1;
+    const hitHeart = getPost.likes.findIndex(x => x.user_id === Number(userInfo)) !== -1;
     return (
       <div className="modal_post">
         <div>
@@ -40,7 +49,7 @@ export default hot(module)(class extends Component {
                   </div>
                 </div>
               </div>
-              {getPost.comments.map((com, i) => <Comment key={i} comment={com} MyPage={this.props.MyPage} />)}
+              {getPost.comments.map((com, i) => <Comment key={i} comment={com} MyPage={this.props.MyPage} userInfo={userInfo} />)}
             </div>
             <div>
               <span className={hitHeart ? 'hit_heart' : 'empty_heart'} onClick={like} />

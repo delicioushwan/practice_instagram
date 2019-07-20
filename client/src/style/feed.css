@@ -139,3 +139,36 @@
   font-size: 14px;
   outline: none;
 }
+
+/* modal */
+
+.feed .close1 {
+  display:block;
+  position: absolute;
+  background: url('../../images/cancel.png');
+  right: 10px;
+  top: 10px;
+  width: 18px;
+  height: 18px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
+.feed .close {
+  display: none;
+}
+
+.feed .center_wrap2 {
+  max-width: 935px;
+  background: rgba(0,0,0,0);
+  border: none;
+  min-width: 0;
+  width: auto;
+  max-height: 100%;
+}
+
+.feed .center_wrap2 > div:nth-child(2) {
+  display:none;
+}

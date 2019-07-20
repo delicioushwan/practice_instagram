@@ -7,6 +7,7 @@ export default hot(module)(class extends Component {
 
   render = () => {
     const { comments, content, users } = this.props.post;
+    const { post } = this.props;
     const { user } = this.props.Feed.state;
     const like = (id) => {
       Axios.request({
@@ -17,13 +18,12 @@ export default hot(module)(class extends Component {
       }).then(result => this.updateFeed({ posts: result.data.posts, user: result.data.user }));
     };
 
-    console.log(this.props.post, content);
     return (
       <div className="feed_comment">
         <div>
           <span>{users.name}</span>
           <span>{content}</span>
-          <div>
+          <div onClick={() => this.updateFeed({ show: true, bundle: post })}>
             <span>댓글</span>
             <span>{comments.length}</span>
             <span>개 모두보기</span>

@@ -7,6 +7,7 @@ const send = (body, req, res) => {
   if (body.user) {
     return FeedPost(req, res);
   }
+
   return MypagePost(req, res);
 };
 
