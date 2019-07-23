@@ -9,7 +9,7 @@ export default hot(module)(class extends Component {
   }
 
   render = () => (
-    <div className="follow_button">
+    <div className="profile_button">
       <button type="button" onClick={() => this.changeStage('edit')}>프로필 편집</button>
       <button type="button" onClick={() => this.changeStage('createPost')}>게시글 쓰기</button>
     </div>

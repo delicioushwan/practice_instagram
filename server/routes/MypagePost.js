@@ -1,7 +1,7 @@
 const models = require('../database/models');
 
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
   try {
     const userInfo = () => {
       if (req.body.feed === req.cookies.user1 || req.body.feed === undefined) {
@@ -9,7 +9,14 @@ module.exports = (req, res) => {
       }
       return req.body.feed;
     };
-    models.posts.findAll({
+    const followings = await models.friends.findAll({
+      where: { following_id: req.cookies.user1 },
+    });
+    const followers = await models.friends.findAll({
+      where: { follower_id: req.cookies.user1 },
+    });
+
+    const posts = await models.posts.findAll({
       where: { user_id: userInfo() },
       include: [
         { model: models.likes, as: 'likes', attributes: ['user_id'] },
@@ -27,7 +34,8 @@ module.exports = (req, res) => {
       ],
       order: [['id', 'DESC'], ['comments', 'id', 'DESC'], ['pictures', 'id']],
     })
-      .then(result => res.send({ posts: result }));
+    
+    res.send({ posts, followers, followings });
   } catch (e) {
     res.send(e);
   }

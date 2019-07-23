@@ -31,7 +31,13 @@ class MyPage extends Component {
       params: { feed },
       withCredentials: true,
     })
-      .then(res => this.setState({ posts: res.data.posts, user: res.data.user, on: Number(res.data.on) }))
+      .then(res => this.setState({
+        posts: res.data.posts,
+        user: res.data.user,
+        on: Number(res.data.on),
+        followers: res.data.followers,
+        followings: res.data.followings,
+      }))
       .catch(() => this.updateApp({ currentPage: 'Home' }));
   }
 
@@ -41,9 +47,6 @@ class MyPage extends Component {
     const { posts, user, show, bundle } = this.state;
     return (
       <div className="mypage">
-        <div className="nav" onClick={() => this.updateApp({ currentPage: 'Feed' })}>
-          nav
-        </div>
         <div className="mypage_container">
           <div>
             {user && <ProfileBig user={user} MyPage={this} />}
@@ -51,7 +54,7 @@ class MyPage extends Component {
           </div>
         </div>
         <Modal show={show} close={() => this.modalOpen(false)}>
-          {this.state.onStage === 'bundle' ? bundle && <ModalPost post={bundle && bundle} MyPage={this} />
+          {this.state.onStage === 'bundle' ? bundle && <ModalPost post={bundle} MyPage={this} />
             : this.state.onStage === 'createPost' ? <CreatePost MyPage={this} />
               : this.state.onStage === 'edit' ? <EditProfile MyPage={this} /> : null}
         </Modal>

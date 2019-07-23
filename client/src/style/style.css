@@ -8,9 +8,51 @@
   display: none;
 }
 
+.nav {
+  position: fixed;
+  width: 100%;
+  background: white;
+  height: 74px;
+  border: solid 1px #dbdbdb;
+  z-index: 999;
+}
+
+.nav > div {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.nav > div > div {
+ margin: auto 20px;
+}
+
+.nav > div > div:first-child {
+  background: url('../../images/homeNav.PNG');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width:150px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.nav > div > div:nth-child(2) {
+  background: url('../../images/mypageNav.PNG');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width:25px;
+  height: 25px;
+  cursor: pointer;
+}
+
 .carousel_pics {
   position:relative;
   background: lightgray;
+  flex: 10;
 }
 
 .carousel_pics > div {

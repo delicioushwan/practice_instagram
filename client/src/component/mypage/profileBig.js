@@ -20,14 +20,14 @@ export default hot(module)(class extends Component {
 
 
   render = () => {
-    const { main_image, about, follower_count, following_count, name } = this.props.user;
-    const { posts, on } = this.props.MyPage.state;
+    const { main_image, about, name } = this.props.user;
+    const { posts, on, followers, followings } = this.props.MyPage.state;
     const { feed } = this.props.MyPage.props.App.state;
     const buttonSelector = () => {
       if (feed === undefined || feed === on) {
         return <ProfileButton MyPage={this.props.MyPage} />;
       }
-      return <FollowButton />;
+      return <FollowButton MyPage={this.props.MyPage} />;
     };
     return (
       <div className="mypage_top_container_B">
@@ -38,7 +38,6 @@ export default hot(module)(class extends Component {
           <div>
             <div>{name}</div>
             {buttonSelector()}
-            <div style={{ display: 'none' }}>follow</div>
           </div>
 
           <div>
@@ -52,13 +51,13 @@ export default hot(module)(class extends Component {
               <li>
                 <span>
                   팔로우
-                  <span>{following_count}</span>
+                  <span>{followings && followings.length}</span>
                 </span>
               </li>
               <li>
                 <span>
                   팔로워
-                  <span>{follower_count}</span>
+                  <span>{followers && followers.length}</span>
                 </span>
               </li>
             </ul>

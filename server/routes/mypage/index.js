@@ -7,6 +7,7 @@ router.use('/createPost', require('./createPost'));
 router.use('/editName', require('./editName'));
 router.use('/editAbout', require('./editAbout'));
 router.use('/editMainPic', require('./editMainPic'));
+router.use('/Follow', require('./Follow'));
 router.use('/', require('./mypage'));
 
 router.use((err, req, res, next) => {

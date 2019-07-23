@@ -26,7 +26,20 @@ router.get('/', async (req, res) => {
       ],
       order: [['id', 'DESC'], ['comments', 'id', 'DESC'], ['pictures', 'id']],
     });
-    res.send({ user, posts, on: req.cookies.user1 });
+    const followings = await models.friends.findAll({
+      where: { follower_id: userInfo },
+    });
+    const followers = await models.friends.findAll({
+      where: { following_id: userInfo },
+    });
+
+    res.send({
+      user,
+      posts,
+      on: req.cookies.user1,
+      followings,
+      followers,
+    });
   } catch (e) {
     res.send(e);
   }
