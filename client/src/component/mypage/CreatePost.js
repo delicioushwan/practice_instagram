@@ -49,7 +49,7 @@ export default hot(module)(class extends Component {
   }
 
   render = () => (
-    <div className="create_post" onClick={console.log(this.state)}>
+    <div className="create_post">
       <form onSubmit={this.state.imgsUrl.length !== 0 && this.handleSubmit}>
         <input name="uploadImage" type="file" multiple onChange={this.pickPictures} value={this.state.Picture} />
         <div>

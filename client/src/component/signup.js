@@ -24,7 +24,6 @@ export default hot(module)(class extends React.Component {
         return this.setState({ warn: '서버에 오류가 발생하였습니다.' });
       }
     } catch (e) {
-      console.log(e);
       this.setState({ warn: '서버에 오류가 발생하였습니다.' });
     }
   };

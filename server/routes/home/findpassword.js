@@ -31,7 +31,6 @@ router.post('/', (req, res) => {
           if (err) {
             console.log(err);
           } else {
-            console.log(`Email sent! : ${info.response}`);
             models.users.update({ password: random }, { where: { user_id: findPasswordId } })
               .then(() => res.send('ok'))
               .catch((error) => {

@@ -10,8 +10,6 @@ export default hot(module)(class extends Component {
   render = () => {
     const { post } = this.props;
     const { currentPage, feed } = this.props.MyPage.state;
-    console.log(feed)
-    console.log(this.props)
     const data = { comment: this.state.commentInput, post_id: post.id, currentPage, feed };
     const createComment = () => {
       Axios.request({
