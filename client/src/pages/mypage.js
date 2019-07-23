@@ -10,9 +10,10 @@ import CreatePost from '../component/mypage/CreatePost';
 import EditProfile from '../component/mypage/EditProfile';
 
 class MyPage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      ...this.props.App.state,
       posts: [],
       user: {},
       show: false,
@@ -30,7 +31,7 @@ class MyPage extends Component {
       params: { feed },
       withCredentials: true,
     })
-      .then(res => this.setState({ posts: res.data.posts, user: res.data.user, on: res.data.on }))
+      .then(res => this.setState({ posts: res.data.posts, user: res.data.user, on: Number(res.data.on) }))
       .catch(() => this.updateApp({ currentPage: 'Home' }));
   }
 
@@ -38,8 +39,6 @@ class MyPage extends Component {
 
   render = () => {
     const { posts, user, show, bundle } = this.state;
-    console.log(this.state)
-    console.log(this.props)
     return (
       <div className="mypage">
         <div className="nav" onClick={() => this.updateApp({ currentPage: 'Feed' })}>

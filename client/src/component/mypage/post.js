@@ -6,16 +6,22 @@ export default hot(module)(class extends Component {
 
   updateMyPage = state => this.props.MyPage.setState(state);
 
+  updateApp = state => this.props.MyPage.props.App.setState(state)
+
   onAndOff = on => this.setState({ active: on })
 
   render = () => {
     const { bundle } = this.props;
+    const set = () => {
+      this.updateMyPage({ bundle, show: true, onStage: 'bundle' });
+      this.updateApp({ feed: bundle.user_id });
+    };
     return (
       <div>
         <div onMouseOver={() => this.onAndOff(true)} onMouseLeave={() => this.onAndOff(false)}>
           {bundle ? (
             <div
-              onClick={() => this.updateMyPage({ bundle, show: true, onStage: 'bundle' })}
+              onClick={() => set()}
               className={this.state.active ? 'active' : ''}
             >
               <div>

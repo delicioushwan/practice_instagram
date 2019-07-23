@@ -22,7 +22,7 @@ module.exports = (req, res) => {
       ],
       order: [['id', 'DESC'], ['comments', 'id', 'DESC'], ['pictures', 'id']],
     })
-      .then(result => res.send({ posts: result, user: req.cookies.user1 }));
+      .then(result => res.send({ posts: result, on: req.cookies.user1 }));
   } catch (e) {
     res.send(e);
   }

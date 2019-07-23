@@ -4,7 +4,7 @@ const MypagePost = require('../MypagePost');
 const FeedPost = require('../FeedPost');
 
 const send = (body, req, res) => {
-  if (body.user) {
+  if (body.currentPage === 'Feed') {
     return FeedPost(req, res);
   }
   return MypagePost(req, res);

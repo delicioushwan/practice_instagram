@@ -20,7 +20,6 @@ export default hot(module)(class extends Component {
 
 
   render = () => {
-    console.log(this.props)
     const { main_image, about, follower_count, following_count, name } = this.props.user;
     const { posts, on } = this.props.MyPage.state;
     const { feed } = this.props.MyPage.props.App.state;
@@ -29,7 +28,7 @@ export default hot(module)(class extends Component {
         return <ProfileButton MyPage={this.props.MyPage} />;
       }
       return <FollowButton />;
-    }
+    };
     return (
       <div className="mypage_top_container_B">
         <div>

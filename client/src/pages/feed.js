@@ -12,7 +12,7 @@ import ModalPost from '../component/mypage/modalPost';
 
 
 class Feed extends Component {
-  state = { posts: [], show: false, feed: 'check' };
+  state = { ...this.props.App.state, posts: [], show: false };
 
   updateApp = state => this.props.App.setState(state)
 
@@ -22,7 +22,7 @@ class Feed extends Component {
       url: 'http://localhost:4000/feed',
       withCredentials: true,
     })
-      .then(res => this.setState({ posts: res.data.posts, user: res.data.user }))
+      .then(res => this.setState({ posts: res.data.posts, on: Number(res.data.on) }))
       .catch(() => this.updateApp({ currentPage: 'Home' }));
   }
 
@@ -46,7 +46,7 @@ class Feed extends Component {
           </div>
         </div>
         <Modal show={show} close={() => this.modalOpen(false)}>
-          {bundle && <ModalPost post={bundle && bundle} MyPage={this} />}
+          {bundle && <ModalPost post={bundle} MyPage={this} updateApp={this.updateApp} />}
         </Modal>
       </div>
     );

@@ -7,14 +7,15 @@ export default hot(module)(class extends Component {
 
   render = () => {
     const { comment, userInfo } = this.props;
-    console.log(userInfo);
+    const { currentPage, feed } = this.props.MyPage.state;
+    const data = { comment_id: comment.id, currentPage, feed };
     const likeComment = () => {
       Axios.request({
         method: 'POST',
         url: 'http://localhost:4000/mypage/commentlike',
-        data: { comment_id: comment.id },
+        data,
         withCredentials: true,
-      }).then(result => this.updateMyPage({ posts: result.data }));
+      }).then(result => this.updateMyPage({ posts: result.data.posts }));
     };
     const hitHeart = comment.likes.findIndex(x => x.user_id === Number(userInfo)) !== -1;
 

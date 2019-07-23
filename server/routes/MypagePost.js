@@ -3,8 +3,14 @@ const models = require('../database/models');
 
 module.exports = (req, res) => {
   try {
+    const userInfo = () => {
+      if (req.body.feed === req.cookies.user1 || req.body.feed === undefined) {
+        return req.cookies.user1;
+      }
+      return req.body.feed;
+    };
     models.posts.findAll({
-      where: { user_id: req.cookies.user1 },
+      where: { user_id: userInfo() },
       include: [
         { model: models.likes, as: 'likes', attributes: ['user_id'] },
         { model: models.users, as: 'users', attributes: ['name', 'main_image'] },
@@ -21,7 +27,7 @@ module.exports = (req, res) => {
       ],
       order: [['id', 'DESC'], ['comments', 'id', 'DESC'], ['pictures', 'id']],
     })
-      .then(result => res.send(result));
+      .then(result => res.send({ posts: result }));
   } catch (e) {
     res.send(e);
   }

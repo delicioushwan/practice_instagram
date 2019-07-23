@@ -4,8 +4,6 @@ const models = require('../../database/models');
 router.get('/', async (req, res) => {
   try {
     const posts = await models.posts.findAll({
-      offset: 0,
-      limit: 10,
       include: [
         { model: models.likes, as: 'likes', attributes: ['user_id'] },
         { model: models.users, as: 'users', attributes: ['name', 'main_image'] },
@@ -22,7 +20,7 @@ router.get('/', async (req, res) => {
       ],
       order: [['id', 'DESC'], ['comments', 'id', 'DESC'], ['pictures', 'id']],
     });
-    res.send({ posts, user: req.cookies.user1 });
+    res.send({ posts, on: req.cookies.user1 });
   } catch (e) {
     res.send(e);
   }

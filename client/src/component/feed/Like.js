@@ -7,16 +7,17 @@ export default hot(module)(class extends Component {
 
   render = () => {
     const { likes, id } = this.props.post;
-    const { user } = this.props.Feed.state;
+    const { on, currentPage } = this.props.Feed.state;
+    const data = { post_id: id, currentPage };
     const like = () => {
       Axios.request({
         method: 'POST',
         url: 'http://localhost:4000/mypage/like',
-        data: { post_id: id, user },
+        data,
         withCredentials: true,
-      }).then(result => this.updateFeed({ posts: result.data.posts, user: result.data.user }));
+      }).then(result => this.updateFeed({ posts: result.data.posts, on: Number(result.data.on) }));
     };
-    const hitHeart = likes.findIndex(x => x.user_id === Number(user)) !== -1;
+    const hitHeart = likes.findIndex(x => x.user_id === Number(on)) !== -1;
     return (
       <div className="feed_like">
         <div className={hitHeart ? 'hit_heart' : 'empty_heart'} onClick={like} />

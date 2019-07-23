@@ -7,7 +7,6 @@ import './style/style.css';
 
 class App extends Component {
   state={
-    user: '',
     currentPage: 'Home',
   }
 

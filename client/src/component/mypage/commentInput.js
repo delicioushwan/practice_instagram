@@ -9,13 +9,17 @@ export default hot(module)(class extends Component {
 
   render = () => {
     const { post } = this.props;
+    const { currentPage, feed } = this.props.MyPage.state;
+    console.log(feed)
+    console.log(this.props)
+    const data = { comment: this.state.commentInput, post_id: post.id, currentPage, feed };
     const createComment = () => {
       Axios.request({
         method: 'POST',
         url: 'http://localhost:4000/mypage/createComment',
-        data: { comment: this.state.commentInput, post_id: post.id },
+        data,
         withCredentials: true,
-      }).then(result => this.updateMyPage({ posts: result.data }));
+      }).then(result => this.updateMyPage({ posts: result.data.posts }));
       this.setState({ commentInput: '' });
     };
 

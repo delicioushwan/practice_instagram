@@ -93,7 +93,7 @@
   font-weight: 500;
 }
 
-.feed .feed_comment > div:first-child > div:nth-child(3) > span:first-child {
+.feed .feed_comment > div:first-child > div > div > span:first-child {
   margin: 0 3px;
 }
 
@@ -172,3 +172,7 @@
 .feed .center_wrap2 > div:nth-child(2) {
   display:none;
 }
+
+.feed .right_container > div:first-child span {
+  cursor: pointer;
+} 

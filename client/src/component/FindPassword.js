@@ -18,7 +18,6 @@ export default hot(module)(class extends React.Component {
         return close();
       }
     } catch (err) {
-      console.log('error-findpassword', err);
       this.update({ findPasswordEmail: '서버에 오류가 발생하였습니다.' });
     }
   }
