@@ -5,7 +5,7 @@ const AWS = require('aws-sdk');
 const models = require('../../database/models');
 const sendUser = require('../sendUser');
 
-AWS.config.loadFromPath(__dirname + '/../../config/awsconfig.json');
+AWS.config.loadFromPath(__dirname + '/../../config/awsconfig.js');
 const s3 = new AWS.S3();
 
 const upload = multer({
