@@ -6,7 +6,7 @@ const models = require('../../database/models');
 const MypagePost = require('../MypagePost');
 
 
-AWS.config.loadFromPath(__dirname + '/../../config/awsconfig.json');
+AWS.config.loadFromPath(__dirname + '/../../config/awsconfig.js');
 const s3 = new AWS.S3();
 
 const upload = multer({
