@@ -24,6 +24,7 @@ class MyPage extends Component {
   updateApp = state => this.props.App.setState(state);
 
   componentDidMount = () => {
+    console.log(this.props)
     const { feed } = this.props.App.state;
     Axios.request({
       method: 'GET',
@@ -39,11 +40,14 @@ class MyPage extends Component {
         followings: res.data.followings,
       }))
       .catch(() => this.updateApp({ currentPage: 'Home' }));
+    this.updateApp({ nav: null });
   }
 
   modalOpen = open => this.setState({ show: open });
 
   render = () => {
+    console.log(this.props)
+    console.log(this.state)
     const { posts, user, show, bundle } = this.state;
     return (
       <div className="mypage">

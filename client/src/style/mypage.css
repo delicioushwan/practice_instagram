@@ -365,6 +365,8 @@
 
 .create_post {
   background: white;
+  max-height: 500px;
+  overflow: auto;
   width: 100%;
   padding: 10px;
   position: relative;

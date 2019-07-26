@@ -10,7 +10,7 @@ class App extends Component {
     currentPage: 'Home',
   }
 
-  movePage = target => this.setState({ currentPage: target })
+  movePage = target => this.setState({ currentPage: target, nav: 'nav' })
 
   componentDidMount = () => {
     if (document.cookie.indexOf('user=') !== -1) {
