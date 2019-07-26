@@ -7,5 +7,5 @@ Instagram Clone(2019.06.21 ~ 07.21) FullStack SPA Service
  Client hosted using AWS S3 Bucket URL(http://cloning-instagram-app.s3.ap-northeast-2.amazonaws.com/index.html)
  Server hosted on AWS EC2, Elastic Beanstalk
  
- <img src="./Demo/회원가입!.gif"/>
+ <img src="./Demo/회원가입!.gif" width="50%"/>
 
