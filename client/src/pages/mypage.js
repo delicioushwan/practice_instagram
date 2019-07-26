@@ -23,9 +23,7 @@ class MyPage extends Component {
 
   updateApp = state => this.props.App.setState(state);
 
-  componentDidMount = () => {
-    console.log(this.props)
-    const { feed } = this.props.App.state;
+  setMyPage = (feed) => {
     Axios.request({
       method: 'GET',
       url: 'http://localhost:4000/mypage',
@@ -40,14 +38,25 @@ class MyPage extends Component {
         followings: res.data.followings,
       }))
       .catch(() => this.updateApp({ currentPage: 'Home' }));
+
+  }
+
+  componentDidMount = () => {
+    const { feed } = this.props.App.state;
+    this.setMyPage(feed);
     this.updateApp({ nav: null });
+  }
+
+  componentWillUpdate = () => {
+    if (this.props.App.state.nav === 'nav') {
+      this.setMyPage();
+      this.updateApp({ nav: null, feed: this.state.on });
+    }
   }
 
   modalOpen = open => this.setState({ show: open });
 
   render = () => {
-    console.log(this.props)
-    console.log(this.state)
     const { posts, user, show, bundle } = this.state;
     return (
       <div className="mypage">

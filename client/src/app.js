@@ -10,7 +10,7 @@ class App extends Component {
     currentPage: 'Home',
   }
 
-  movePage = target => this.setState({ currentPage: target, nav: 'nav' })
+  movePage = () => this.setState({ currentPage: 'MyPage', nav: 'nav' });
 
   componentDidMount = () => {
     if (document.cookie.indexOf('user=') !== -1) {
@@ -23,8 +23,8 @@ class App extends Component {
       <div className="App">
         <div className={this.state.currentPage !== 'Home' ? 'nav' : 'none'}>
           <div>
-            <div onClick={() => this.movePage('Feed')} />
-            <div onClick={() => this.movePage('MyPage')} />
+            <div onClick={() => this.setState({ currentPage: 'Feed' })} />
+            <div onClick={this.movePage} />
           </div>
         </div>
         {this.state.currentPage === 'Home' ? <Home App={this} />

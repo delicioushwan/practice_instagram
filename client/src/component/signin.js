@@ -34,7 +34,7 @@ class Signin extends Component {
     this.fetch('http://localhost:4000/home/signin', 'post', {}, this.form)
       .then((result) => {
         if (result.data.data === 'ok') {
-          return this.updateApp({ currentPage: 'Feed' });
+          return this.updateApp({ currentPage: 'Feed', user: result.data.user });
         }
         if (result.data === 'invalid') {
           this.update({ signIn: '아이디와 비밀번호를 확인하시고 다시 로그인 하세요.' });
