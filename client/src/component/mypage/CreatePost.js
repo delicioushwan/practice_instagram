@@ -28,7 +28,7 @@ export default hot(module)(class extends Component {
       config: { headers: { 'Content-Type': 'multipart/form-data' } },
     })
       .then((result) => {
-        this.updateMyPage({ posts: result.data, show: false });
+        this.updateMyPage({ posts: result.data.posts, show: false });
         this.setState({ picture: '', imgsUrl: '' });
       });
   }
@@ -50,19 +50,14 @@ export default hot(module)(class extends Component {
 
   render = () => (
     <div className="create_post">
-      <form onSubmit={this.state.imgsUrl.length !== 0 && this.handleSubmit}>
+      <form onSubmit={this.state.imgsUrl.length !== 0 ? this.handleSubmit : null}>
         <input name="uploadImage" type="file" multiple onChange={this.pickPictures} value={this.state.Picture} />
         <div>
-          {this.state.imgsUrl && this.state.imgsUrl.map((url, i) => {
-            if (i < 4) {
-              return (
-                <div key={i}>
-                  <img src={url} alt="" />
-                </div>
-              );
-            }
-            return null;
-          })}
+          {this.state.imgsUrl && this.state.imgsUrl.map((url, i) => (
+            <div key={i}>
+              <img src={url} alt="" />
+            </div>
+          ))}
         </div>
         <div>
           <input placeholder="문구 입력" onChange={(e) => { this.setState({ content: e.target.value }); }} />

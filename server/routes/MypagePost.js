@@ -33,8 +33,7 @@ module.exports = async (req, res) => {
         { model: models.pictures, as: 'pictures', attributes: ['pic'] },
       ],
       order: [['id', 'DESC'], ['comments', 'id', 'DESC'], ['pictures', 'id']],
-    })
-    
+    });
     res.send({ posts, followers, followings });
   } catch (e) {
     res.send(e);
