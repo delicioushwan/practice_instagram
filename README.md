@@ -1,8 +1,8 @@
-# practice_instagram
+# Instagram Clone
 
-cloning instagram(2019.06.21 ~ 07.21)
+Instagram Clone(2019.06.21 ~ 07.21) FullStack SPA Service
  
- react node express MySQL sequelize webpack babel JWT NodeMail 등을 이용하여 인스타그램 웹을 구현
+ React Node.js Express.js MySQL Sequelize.js Webpack Babel JWT NodeMail 등을 이용하여 인스타그램 웹을 구현
  
  
  
