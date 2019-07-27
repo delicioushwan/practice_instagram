@@ -8,7 +8,7 @@ Instagram Clone(2019.06.21 ~ 07.21) FullStack SPA Service
  Server hosted on AWS EC2, Elastic Beanstalk<br>
  DB hosted on AWS RDS and S3<br>
  
- 데모 URL: http://cloning-instagram-app.s3.ap-northeast-2.amazonaws.com/index.html (id: test, pass: test)
+ 데모 <a href="http://cloning-instagram-app.s3.ap-northeast-2.amazonaws.com/index.html">바로가기 </a> (id: test, pass: test)
  
  # 회원가입
  <img src="./Demo/회원가입!.gif" />
