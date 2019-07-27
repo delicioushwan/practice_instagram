@@ -1,14 +1,14 @@
 # Instagram Clone
 
-Instagram Clone(2019.06.21 ~ 07.21) FullStack SPA Service
+## Instagram Clone(2019.06.21 ~ 07.21) FullStack SPA Service
  
- React Node.js Express.js MySQL Sequelize.js Webpack Babel JWT NodeMail Multer, MulterS3(image upload) 등을 이용하여 인스타그램 웹을 구현
+### React Node.js Express.js MySQL Sequelize.js Webpack Babel JWT NodeMail Multer, MulterS3(image upload) 등을 이용하여 인스타그램 웹을 구현
  
  Client hosted using AWS S3 Bucket <br>
  Server hosted on AWS EC2, Elastic Beanstalk<br>
  DB hosted on AWS RDS and S3<br>
  
- 데모 <a href="http://cloning-instagram-app.s3.ap-northeast-2.amazonaws.com/index.html">바로가기 </a> (id: test, pass: test)
+ ### 데모 <a href="http://cloning-instagram-app.s3.ap-northeast-2.amazonaws.com/index.html">바로가기 </a> (id: test, pass: test)
  
  # 회원가입
  <img src="./Demo/회원가입!.gif" />
