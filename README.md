@@ -2,7 +2,9 @@
 
 ## Instagram Clone(2019.06.21 ~ 07.21) FullStack SPA Service
  
-### React Node.js Express.js MySQL Sequelize.js Webpack Babel JWT NodeMail Multer, MulterS3(image upload) 등을 이용하여 개발환경 구축부터 배포까지 인스타그램 웹을 구현
+### React Node.js Express.js MySQL Sequelize.js Webpack Babel JWT NodeMail Multer, MulterS3(image upload) 등을 이용하여 인스타그램 웹을 구현
+
+webpack과 babel을 이용하여 개발환경을 구축하고, 인스타그램의 주요기능(회원가입 로그인 포스트등록 좋아요 댓글 등)을 구현 aws를 이용하여 배포.
  
  Client hosted using AWS S3 Bucket <br>
  Server hosted on AWS EC2, Elastic Beanstalk<br>
