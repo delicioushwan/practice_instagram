@@ -26,7 +26,7 @@ class MyPage extends Component {
   setMyPage = (feed) => {
     Axios.request({
       method: 'GET',
-      url: 'http://localhost:4000/mypage',
+      url: 'http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/mypage',
       params: { feed },
       withCredentials: true,
     })
@@ -38,7 +38,6 @@ class MyPage extends Component {
         followings: res.data.followings,
       }))
       .catch(() => this.updateApp({ currentPage: 'Home' }));
-
   }
 
   componentDidMount = () => {

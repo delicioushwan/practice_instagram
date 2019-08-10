@@ -16,7 +16,7 @@ export default hot(module)(class extends Component {
     const like = () => {
       Axios.request({
         method: 'POST',
-        url: 'http://localhost:4000/mypage/like',
+        url: 'http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/mypage/like',
         data,
         withCredentials: true,
       }).then(result => this.updateMyPage({ posts: result.data.posts }));

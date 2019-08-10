@@ -21,7 +21,7 @@ export default hot(module)(class extends Component {
     data.append('content', this.state.content);
 
     Axios.request({
-      url: 'http://localhost:4000/mypage/createPost',
+      url: 'http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/mypage/createPost',
       method: 'POST',
       data,
       withCredentials: true,

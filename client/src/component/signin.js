@@ -31,7 +31,7 @@ class Signin extends Component {
   };
 
   submit = () => {
-    this.fetch('http://localhost:4000/home/signin', 'post', {}, this.form)
+    this.fetch('http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/home/signin', 'post', {}, this.form)
       .then((result) => {
         if (result.data.data === 'ok') {
           return this.updateApp({ currentPage: 'Feed', user: result.data.user });

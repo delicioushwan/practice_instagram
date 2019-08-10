@@ -14,7 +14,7 @@ export default hot(module)(class extends Component {
     const createComment = () => {
       Axios.request({
         method: 'POST',
-        url: 'http://localhost:4000/mypage/createComment',
+        url: 'http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/mypage/createComment',
         data,
         withCredentials: true,
       }).then(result => this.updateFeed({ posts: result.data.posts }));

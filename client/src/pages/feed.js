@@ -19,7 +19,7 @@ class Feed extends Component {
   componentDidMount = () => {
     Axios.request({
       method: 'GET',
-      url: 'http://localhost:4000/feed',
+      url: 'http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/feed',
       withCredentials: true,
     })
       .then(res => this.setState({ posts: res.data.posts, on: Number(res.data.on) }))
