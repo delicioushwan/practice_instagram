@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
-export default hot(module)(class extends Component {
+
+class Head extends Component {
   updateFeed = state => this.props.Feed.setState(state);
 
   render = () => {
+    console.log('Head', this.props);
+
     const { post, updateApp } = this.props;
     return (
       <div className="feed_head">
@@ -13,4 +17,13 @@ export default hot(module)(class extends Component {
       </div>
     );
   }
+}
+
+const mapDispatchToProps = dispatch => ({
+  getUserIdGet: () => dispatch(actions.mypageUserId()),
 });
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Head);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
-import { hot } from 'react-hot-loader';
+import { connect } from 'react-redux';
 import '../style/mypage.css';
 import ProfileBig from '../component/mypage/profileBig';
 import Posts from '../component/mypage/posts';
@@ -8,6 +8,8 @@ import Modal from '../component/Modal';
 import ModalPost from '../component/mypage/modalPost';
 import CreatePost from '../component/mypage/CreatePost';
 import EditProfile from '../component/mypage/EditProfile';
+import * as actions from '../actions';
+
 
 class MyPage extends Component {
   constructor(props) {
@@ -41,6 +43,7 @@ class MyPage extends Component {
   }
 
   componentDidMount = () => {
+    this.props.test();
     const { feed } = this.props.App.state;
     this.setMyPage(feed);
     this.updateApp({ nav: null });
@@ -75,4 +78,11 @@ class MyPage extends Component {
   }
 }
 
-export default hot(module)(MyPage);
+const mapDispatchToProps = dispatch => ({
+  test: () => dispatch(actions.requestMypage()),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(MyPage);

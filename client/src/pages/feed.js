@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
-import { hot } from 'react-hot-loader';
+import { connect } from 'react-redux';
 import '../style/feed.css';
 import Head from '../component/feed/Head';
 import Picture from '../component/feed/Picture';
@@ -9,6 +9,7 @@ import Comment from '../component/feed/Comment';
 import InputComment from '../component/feed/InputComment';
 import Modal from '../component/Modal';
 import ModalPost from '../component/mypage/modalPost';
+import * as actions from '../actions';
 
 
 class Feed extends Component {
@@ -17,6 +18,7 @@ class Feed extends Component {
   updateApp = state => this.props.App.setState(state)
 
   componentDidMount = () => {
+    this.props.test();
     Axios.request({
       method: 'GET',
       url: 'http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/feed',
@@ -29,6 +31,7 @@ class Feed extends Component {
   modalOpen = open => this.setState({ show: open });
 
   render = () => {
+    console.log(this.props);
     const { posts, show, bundle } = this.state;
     return (
       <div className="feed">
@@ -53,4 +56,13 @@ class Feed extends Component {
   }
 }
 
-export default hot(module)(Feed);
+const mapStateToProps = state => state;
+
+const mapDispatchToProps = dispatch => ({
+  test: () => dispatch(actions.requestFeed()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Feed);
