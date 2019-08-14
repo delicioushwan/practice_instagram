@@ -4,6 +4,7 @@ const models = require('../../database/models');
 router.get('/', async (req, res) => {
   try {
     const userInfo = req.query.feed === undefined ? req.cookies.user1 : req.query.feed;
+    console.log('*************************************', req.query.feed, userInfo);
     const user = await models.users.findOne({
       where: { id: userInfo },
       attributes: ['id', 'name', 'follower_count', 'following_count', 'post_count', 'about', 'main_image'],

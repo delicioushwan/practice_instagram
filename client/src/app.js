@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
+import { connect } from 'react-redux';
 import Home from './pages/home';
 import Feed from './pages/feed';
 import MyPage from './pages/mypage';
+import * as actions from './actions';
 import './style/style.css';
 
 class App extends Component {
@@ -10,11 +12,15 @@ class App extends Component {
     currentPage: 'Home',
   }
 
-  movePage = () => this.setState({ currentPage: 'MyPage', nav: 'nav' });
+  movePage = () => {
+    const { loggedIn } = this.props.feed;
+    this.props.goToMypage(loggedIn);
+    this.setState({ currentPage: 'MyPage' });
+  };
 
   componentDidMount = () => {
     if (document.cookie.indexOf('user=') !== -1) {
-      this.setState({ currentPage: 'MyPage' });
+      this.setState({ currentPage: 'Feed' });
     }
   }
 
@@ -37,4 +43,14 @@ class App extends Component {
   }
 }
 
-export default hot(module)(App);
+const mapStateToProps = state => state;
+
+const mapDispatchToProps = dispatch => ({
+  goToMypage: loggedId => dispatch(actions.goToMypage(loggedId)),
+});
+
+
+export default hot(module)(connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App));

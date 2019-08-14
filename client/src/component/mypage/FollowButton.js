@@ -12,7 +12,7 @@ export default hot(module)(class extends Component {
     const follow = () => {
       Axios.request({
         method: 'POST',
-        url: 'http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/mypage/Follow',
+        url: 'http://localhost:4000/mypage/Follow',
         data,
         withCredentials: true,
       }).then(result => this.updateMyPage({ followers: result.data.followers, followings: result.data.followings }));

@@ -12,7 +12,7 @@ export default hot(module)(class extends React.Component {
 
   submit = async () => {
     const { fetch, close } = this.props;
-    const result = await fetch('http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/home/signup', 'post', {}, this.form);
+    const result = await fetch('http://localhost:4000/home/signup', 'post', {}, this.form);
     try {
       if (result.data === 'ok') {
         return close();

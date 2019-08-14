@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
-import Axios from 'axios';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
-export default hot(module)(class extends Component {
+class CommentInput extends Component {
   state ={ commentInput: '' }
 
   updateFeed = state => this.props.Feed.setState(state)
@@ -10,14 +10,12 @@ export default hot(module)(class extends Component {
   render = () => {
     const { post } = this.props;
     const { currentPage } = this.props.Feed.state;
-    const data = { comment: this.state.commentInput, post_id: post.id, currentPage };
     const createComment = () => {
-      Axios.request({
-        method: 'POST',
-        url: 'http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/mypage/createComment',
-        data,
-        withCredentials: true,
-      }).then(result => this.updateFeed({ posts: result.data.posts }));
+      this.props.createComment({
+        comment: this.state.commentInput,
+        post_id: post.id,
+        currentPage,
+      });
       this.setState({ commentInput: '' });
     };
 
@@ -32,4 +30,13 @@ export default hot(module)(class extends Component {
       </div>
     );
   }
+}
+
+const mapDispatchToProps = dispatch => ({
+  createComment: data => dispatch(actions.createComment(data)),
 });
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(CommentInput);

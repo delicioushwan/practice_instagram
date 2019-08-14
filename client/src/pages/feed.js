@@ -21,7 +21,7 @@ class Feed extends Component {
     this.props.test();
     Axios.request({
       method: 'GET',
-      url: 'http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/feed',
+      url: 'http://localhost:4000/feed',
       withCredentials: true,
     })
       .then(res => this.setState({ posts: res.data.posts, on: Number(res.data.on) }))
@@ -31,8 +31,8 @@ class Feed extends Component {
   modalOpen = open => this.setState({ show: open });
 
   render = () => {
-    console.log(this.props);
-    const { posts, show, bundle } = this.state;
+    const { show } = this.state;
+    const { posts, bundle } = this.props.feed;
     return (
       <div className="feed">
         <div className="feed_container">

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
 import { connect } from 'react-redux';
 import '../style/mypage.css';
 import ProfileBig from '../component/mypage/profileBig';
@@ -25,46 +24,27 @@ class MyPage extends Component {
 
   updateApp = state => this.props.App.setState(state);
 
-  setMyPage = (feed) => {
-    Axios.request({
-      method: 'GET',
-      url: 'http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/mypage',
-      params: { feed },
-      withCredentials: true,
-    })
-      .then(res => this.setState({
-        posts: res.data.posts,
-        user: res.data.user,
-        on: Number(res.data.on),
-        followers: res.data.followers,
-        followings: res.data.followings,
-      }))
-      .catch(() => this.updateApp({ currentPage: 'Home' }));
-  }
-
   componentDidMount = () => {
-    this.props.test();
-    const { feed } = this.props.App.state;
-    this.setMyPage(feed);
+    this.props.test(this.props.mypage.mypageUserId);
     this.updateApp({ nav: null });
   }
 
-  componentWillUpdate = () => {
-    if (this.props.App.state.nav === 'nav') {
-      this.setMyPage();
-      this.updateApp({ nav: null, feed: this.state.on });
+  componentDidUpdate = (prev) => {
+    if (prev.mypage.mypageUserId !== this.props.mypage.mypageUserId) {
+      return this.props.test(this.props.mypageUserId);
     }
   }
 
   modalOpen = open => this.setState({ show: open });
 
   render = () => {
-    const { posts, user, show, bundle } = this.state;
+    const { show } = this.state;
+    const { posts, pageUser, bundle } = this.props.mypage;
     return (
       <div className="mypage">
         <div className="mypage_container">
           <div>
-            {user && <ProfileBig user={user} MyPage={this} />}
+            {pageUser && <ProfileBig user={pageUser} MyPage={this} />}
             <Posts posts={posts} MyPage={this} />
           </div>
         </div>
@@ -78,11 +58,13 @@ class MyPage extends Component {
   }
 }
 
+const mapStateToProps = state => state;
+
 const mapDispatchToProps = dispatch => ({
-  test: () => dispatch(actions.requestMypage()),
+  test: userId => dispatch(actions.requestMypage(userId)),
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(MyPage);

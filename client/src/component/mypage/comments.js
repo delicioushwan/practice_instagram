@@ -1,22 +1,13 @@
 import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
-import Axios from 'axios';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
-export default hot(module)(class extends Component {
+class Comment extends Component {
   updateMyPage = state => this.props.MyPage.setState(state);
 
   render = () => {
     const { comment, userInfo } = this.props;
-    const { currentPage, feed } = this.props.MyPage.state;
-    const data = { comment_id: comment.id, currentPage, feed };
-    const likeComment = () => {
-      Axios.request({
-        method: 'POST',
-        url: 'http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/mypage/commentlike',
-        data,
-        withCredentials: true,
-      }).then(result => this.updateMyPage({ posts: result.data.posts }));
-    };
+    const { currentPage } = this.props.MyPage.state;
     const hitHeart = comment.likes.findIndex(x => x.user_id === Number(userInfo)) !== -1;
 
     return (
@@ -26,7 +17,7 @@ export default hot(module)(class extends Component {
           <div style={{ margin: 'auto 0', marginRight: '15px' }}>
             <span>{comment.users.name}</span>
             <span>{comment.comment}</span>
-            <div className={hitHeart ? 'heart_comment hit' : 'heart_comment'} onClick={likeComment} />
+            <div className={hitHeart ? 'heart_comment hit' : 'heart_comment'} onClick={() => this.props.like({ comment_id: comment.id, currentPage })} />
           </div>
         </div>
         <div style={{ marginLeft: '52px' }}>
@@ -37,4 +28,14 @@ export default hot(module)(class extends Component {
       </div>
     );
   }
+}
+
+
+const mapDispatchToProps = dispatch => ({
+  like: comment_id => dispatch(actions.likeOnComment(comment_id)),
 });
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Comment);

@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
-export default hot(module)(class extends Component {
+class Post extends Component {
   state ={ active: false }
 
   updateMyPage = state => this.props.MyPage.setState(state);
-
-  updateApp = state => this.props.MyPage.props.App.setState(state)
 
   onAndOff = on => this.setState({ active: on })
 
   render = () => {
     const { bundle } = this.props;
     const set = () => {
-      this.updateMyPage({ bundle, show: true, onStage: 'bundle' });
-      this.updateApp({ feed: bundle.user_id });
+      this.props.set(bundle);
+      this.updateMyPage({ show: true, onStage: 'bundle' });
     };
     return (
       <div>
@@ -44,4 +43,16 @@ export default hot(module)(class extends Component {
       </div>
     );
   }
+}
+
+const mapStateToProps = state => state;
+
+const mapDispatchToProps = dispatch => ({
+  set: bundle => dispatch(actions.getBundle(bundle)),
 });
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Post);

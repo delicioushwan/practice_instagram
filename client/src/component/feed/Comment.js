@@ -1,28 +1,18 @@
 import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
-import Axios from 'axios';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
-export default hot(module)(class extends Component {
+class Post extends Component {
   updateFeed = state => this.props.Feed.setState(state)
-
-  updateApp = state => this.props.Feed.props.App.setState(state)
 
   render = () => {
     const { comments, content, users } = this.props.post;
     const { post } = this.props;
-    const { on, currentPage } = this.props.Feed.state;
+    const { currentPage } = this.props.Feed.state;
+    const { loggedIn } = this.props.feed;
     const set = () => {
-      this.updateFeed({ bundle: post, show: true });
-      this.updateApp({ feed: post.user_id });
-    };
-
-    const like = (id) => {
-      Axios.request({
-        method: 'POST',
-        url: 'http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/mypage/commentlike',
-        data: { comment_id: id, currentPage },
-        withCredentials: true,
-      }).then(result => this.updateFeed({ posts: result.data.posts }));
+      this.props.set(post);
+      this.updateFeed({ show: true });
     };
 
     return (
@@ -39,16 +29,28 @@ export default hot(module)(class extends Component {
           </div>
         </div>
         {comments.slice(0, 2).map((comment, i) => {
-          const hitHeart = comment.likes.findIndex(x => x.user_id === Number(on)) !== -1;
+          const hitHeart = comment.likes.findIndex(x => x.user_id === Number(loggedIn)) !== -1;
           return (
             <div className="comment" key={i}>
               <span>{comment.users.name}</span>
               <span>{comment.comment}</span>
-              <div className={hitHeart ? 'hit_heart' : 'empty_heart'} onClick={() => like(comment.id)} />
+              <div className={hitHeart ? 'hit_heart' : 'empty_heart'} onClick={() => this.props.like({ comment_id: comment.id, currentPage })} />
             </div>
           );
         })}
       </div>
     );
   }
+}
+
+const mapStateToProps = state => state;
+
+const mapDispatchToProps = dispatch => ({
+  set: bundle => dispatch(actions.getBundleFeed(bundle)),
+  like: comment_id => dispatch(actions.likeOnComment(comment_id)),
 });
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Post);

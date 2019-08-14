@@ -5,7 +5,7 @@ import * as actions from '../actions';
 
 const second = {
   method: 'GET',
-  url: 'http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/feed',
+  url: 'http://localhost:4000/feed',
   withCredentials: true,
 };
 
