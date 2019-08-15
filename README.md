@@ -1,10 +1,11 @@
 # Instagram Clone
 
 ## Instagram Clone(2019.06.21 ~ 07.21) FullStack SPA Service
+## Refatoring with redux and redux-saga(2019-08-12 ~ present) 리액트만을 만들었던 app을 redux와 redux-saga를 이용하여 무분별하게 뿌려지던 props들을 필요한곳에서만 주고 받을 수 있도록 refactoring합니다. 또한, React-router를 이용하여 현재 /index.html 만으로 사용되고있는 url을 세분화하고 진입점을 추가할 수 있습니다.(refactoring branch로 가면 코드확인 가능.)
  
-### React Node.js Express.js MySQL Sequelize.js Webpack Babel JWT NodeMail Multer, MulterS3(image upload) 등을 이용하여 인스타그램 웹을 구현
+### React Redux Redux-saga React-Router Node.js Express.js MySQL Sequelize.js Webpack Babel JWT NodeMail Multer, MulterS3(image upload) 등을 이용하여 인스타그램 웹을 구현
 
-webpack과 babel을 이용하여 개발환경을 구축하고, 인스타그램의 주요기능(회원가입 로그인 포스트등록 좋아요 댓글 등)을 구현 aws를 이용하여 배포.
+webpack과 babel을 이용하여 개발환경을 구축하고, 인스타그램의 주요기능(회원가입, 로그인, 메일을 통한 비밀번호찾기, 포스트등록, 좋아요, 댓글, 등)을 구현 aws를 이용하여 배포.
  
  Client hosted using AWS S3 Bucket <br>
  Server hosted on AWS EC2, Elastic Beanstalk<br>
