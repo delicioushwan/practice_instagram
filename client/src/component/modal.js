@@ -8,15 +8,16 @@ export default (props) => {
   return (
     <div className="center_wrap1" style={{ display: show ? 'flex' : 'none' }}>
       <div>
-        <span
-          className="close1"
-          onClick={close}
-        />
         <div className="center_wrap2">
           <span
             className="close"
             onClick={close}
           />
+          <span
+            className="close1"
+            onClick={close}
+          />
+
           <div>instagram</div>
           <div className="modal">
             { children }
