@@ -6,7 +6,6 @@ import * as actions from '../../actions';
 class Head extends Component {
   render = () => {
     const { post, updateApp } = this.props;
-
     const getUserId = () => {
       updateApp({ currentPage: 'MyPage' });
       this.props.getUserIdGet(post.user_id);

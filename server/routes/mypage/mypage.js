@@ -4,7 +4,6 @@ const models = require('../../database/models');
 router.get('/', async (req, res) => {
   try {
     const userInfo = req.query.feed === undefined ? req.cookies.user1 : req.query.feed;
-    console.log('*************************************', req.query.feed, userInfo);
     const user = await models.users.findOne({
       where: { id: userInfo },
       attributes: ['id', 'name', 'follower_count', 'following_count', 'post_count', 'about', 'main_image'],
@@ -13,7 +12,7 @@ router.get('/', async (req, res) => {
       where: { user_id: userInfo },
       include: [
         { model: models.likes, as: 'likes', attributes: ['user_id'] },
-        { model: models.users, as: 'users', attributes: ['name', 'main_image'] },
+        { model: models.users, as: 'users', attributes: ['name', 'main_image', 'user_account'] },
         {
           model: models.comments,
           as: 'comments',
