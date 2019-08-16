@@ -8,7 +8,7 @@ class Post extends Component {
   render = () => {
     const { comments, content, users } = this.props.post;
     const { post } = this.props;
-    const { currentPage } = this.props.Feed.state;
+    const { currentPage } = this.props;
     const { loggedIn } = this.props.feed;
     const set = () => {
       this.props.set(post);

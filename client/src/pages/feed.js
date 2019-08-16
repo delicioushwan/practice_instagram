@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
 import { connect } from 'react-redux';
 import '../style/feed.css';
 import Head from '../component/feed/Head';
@@ -9,6 +8,8 @@ import Comment from '../component/feed/Comment';
 import InputComment from '../component/feed/InputComment';
 import Modal from '../component/Modal';
 import ModalPost from '../component/mypage/modalPost';
+// eslint-disable-next-line import/no-cycle
+import Nav from './nav';
 import * as actions from '../actions';
 
 
@@ -19,13 +20,7 @@ class Feed extends Component {
 
   componentDidMount = () => {
     this.props.test();
-    Axios.request({
-      method: 'GET',
-      url: 'http://localhost:4000/feed',
-      withCredentials: true,
-    })
-      .then(res => this.setState({ posts: res.data.posts, on: Number(res.data.on) }))
-      .catch(() => this.updateApp({ currentPage: 'Home' }));
+    this.props.currentpage('Feed');
   }
 
   modalOpen = open => this.setState({ show: open });
@@ -35,11 +30,12 @@ class Feed extends Component {
     const { posts, bundle } = this.props.feed;
     return (
       <div className="feed">
+        <Nav history={this.props.history} />
         <div className="feed_container">
           <div>
             {posts.map((post, i) => (
               <div key={i} className="feed_post">
-                <Head post={post} Feed={this} updateApp={this.updateApp} />
+                <Head post={post} Feed={this} history={this.props.history} updateApp={this.updateApp} />
                 <Picture pictures={post.pictures} Feed={this} />
                 <Like post={post} Feed={this} />
                 <Comment post={post} Feed={this} />
@@ -60,6 +56,7 @@ const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => ({
   test: () => dispatch(actions.requestFeed()),
+  currentpage: page => dispatch(actions.currentpage(page)),
 });
 
 export default connect(

@@ -9,7 +9,7 @@ class CommentInput extends Component {
 
   render = () => {
     const { post } = this.props;
-    const { currentPage } = this.props.Feed.state;
+    const { currentPage } = this.props;
     const createComment = () => {
       this.props.createComment({
         comment: this.state.commentInput,

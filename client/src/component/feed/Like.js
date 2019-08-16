@@ -7,7 +7,7 @@ class Like extends Component {
 
   render = () => {
     const { likes, id } = this.props.post;
-    const { currentPage } = this.props.Feed.state;
+    const { currentPage } = this.props;
     const { loggedIn } = this.props.feed;
 
     const hitHeart = likes.findIndex(x => x.user_id === Number(loggedIn)) !== -1;

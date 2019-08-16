@@ -8,6 +8,7 @@ import ModalPost from '../component/mypage/modalPost';
 import CreatePost from '../component/mypage/CreatePost';
 import EditProfile from '../component/mypage/EditProfile';
 import * as actions from '../actions';
+import Nav from './nav';
 
 
 class MyPage extends Component {
@@ -22,11 +23,9 @@ class MyPage extends Component {
     };
   }
 
-  updateApp = state => this.props.App.setState(state);
-
   componentDidMount = () => {
-    this.props.test(this.props.mypage.mypageUserId);
-    this.updateApp({ nav: null });
+    this.props.test(this.props.match.params.id);
+    this.props.currentpage('MyPage');
   }
 
   componentDidUpdate = (prev) => {
@@ -42,6 +41,7 @@ class MyPage extends Component {
     const { posts, pageUser, bundle } = this.props.mypage;
     return (
       <div className="mypage">
+        <Nav history={this.props.history} />
         <div className="mypage_container">
           <div>
             {pageUser && <ProfileBig user={pageUser} MyPage={this} />}
@@ -62,6 +62,7 @@ const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => ({
   test: userId => dispatch(actions.requestMypage(userId)),
+  currentpage: page => dispatch(actions.currentpage(page)),
 });
 
 export default connect(

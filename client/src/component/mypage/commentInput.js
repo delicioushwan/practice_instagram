@@ -9,12 +9,13 @@ class CommentInput extends Component {
 
   render = () => {
     const { post } = this.props;
-    const { currentPage } = this.props.MyPage.state;
+    const { currentPage } = this.props;
     const createComment = () => {
       this.props.createComment({
         comment: this.state.commentInput,
         post_id: post.id,
         currentPage,
+        feed: post.userId,
       });
       this.setState({ commentInput: '' });
     };
@@ -29,11 +30,13 @@ class CommentInput extends Component {
   }
 }
 
+const mapPropstoState = state => state;
+
 const mapDispatchToProps = dispatch => ({
   createComment: data => dispatch(actions.createComment(data)),
 });
 
 export default connect(
-  null,
+  mapPropstoState,
   mapDispatchToProps,
 )(CommentInput);

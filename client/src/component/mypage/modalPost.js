@@ -10,13 +10,14 @@ class modalPost extends Component {
 
   render = () => {
     const { post, updateApp } = this.props;
-    const { currentPage } = this.props.MyPage.state;
+    const { currentPage } = this.props;
     const { posts } = currentPage === 'MyPage' ? this.props.mypage : this.props.feed;
     const { loggedIn } = this.props.feed;
     const userInfo = loggedIn;
 
-    const getPost = posts[posts.findIndex(x => x.id === this.props.post.id)];
+    const getPost = posts[posts.findIndex(x => x.id === post.id)];
     const hitHeart = getPost.likes.findIndex(x => x.user_id === Number(userInfo)) !== -1;
+
     return (
       <div className="modal_post">
         <div>
@@ -39,11 +40,11 @@ class modalPost extends Component {
                 </div>
               </div>
               <div>
-                {getPost.comments.map((com, i) => <Comment key={i} comment={com} MyPage={this.props.MyPage} userInfo={userInfo} />)}
+                {getPost.comments.map((com, i) => <Comment key={i} comment={com} post={post} userInfo={userInfo} />)}
               </div>
             </div>
             <div>
-              <span className={hitHeart ? 'hit_heart' : 'empty_heart'} onClick={() => this.props.like({ post_id: post.id, currentPage })} />
+              <span className={hitHeart ? 'hit_heart' : 'empty_heart'} onClick={() => this.props.like({ post_id: post.id, currentPage, feed: post.userId })} />
               <div>
                 <span>좋아요</span>
                 <span style={{ marginLeft: '5px' }}>{getPost.likes.length}</span>
@@ -64,7 +65,7 @@ class modalPost extends Component {
 const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => ({
-  like: (post_id, currentPage) => dispatch(actions.likeOnMypage(post_id, currentPage)),
+  like: data => dispatch(actions.likeOnMypage(data)),
 });
 
 export default connect(

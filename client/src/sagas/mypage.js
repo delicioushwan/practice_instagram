@@ -21,15 +21,15 @@ export function* requestMypage(action) {
 }
 
 export function* likeOnMypage(action) {
-  const data = (post_id, currentPage) => ({
+  const data = (post_id, currentPage, feed) => ({
     method: 'POST',
     url: 'http://localhost:4000/mypage/like',
-    data: { post_id, currentPage },
+    data: { post_id, currentPage, feed },
     withCredentials: true,
   });
-  const { currentPage, post_id } = action.payload;
+  const { currentPage, post_id, feed } = action.payload;
   try {
-    const response = yield call([Axios, 'request'], data(post_id, currentPage));
+    const response = yield call([Axios, 'request'], data(post_id, currentPage, feed));
     if (currentPage === 'MyPage') {
       yield put({
         type: actions.likeGetData().type,
@@ -47,15 +47,15 @@ export function* likeOnMypage(action) {
 }
 
 export function* likeOnComment(action) {
-  const data = (comment_id, currentPage) => ({
+  const data = (comment_id, currentPage, feed) => ({
     method: 'POST',
     url: 'http://localhost:4000/mypage/commentlike',
-    data: { comment_id, currentPage },
+    data: { comment_id, currentPage, feed },
     withCredentials: true,
   });
-  const { currentPage, comment_id } = action.payload;
+  const { currentPage, comment_id, feed } = action.payload;
   try {
-    const response = yield call([Axios, 'request'], data(comment_id, currentPage));
+    const response = yield call([Axios, 'request'], data(comment_id, currentPage, feed));
 
     if (currentPage === 'MyPage') {
       yield put({
@@ -75,15 +75,15 @@ export function* likeOnComment(action) {
 
 
 export function* createComment(action) {
-  const data = (comment, post_id, currentPage) => ({
+  const data = (comment, post_id, currentPage, feed) => ({
     method: 'POST',
     url: 'http://localhost:4000/mypage/createComment',
-    data: { comment, post_id, currentPage },
+    data: { comment, post_id, currentPage, feed },
     withCredentials: true,
   });
-  const { currentPage, post_id, comment } = action.payload;
+  const { currentPage, post_id, comment, feed } = action.payload;
   try {
-    const response = yield call([Axios, 'request'], data(comment, post_id, currentPage));
+    const response = yield call([Axios, 'request'], data(comment, post_id, currentPage, feed));
     if (currentPage === 'MyPage') {
       yield put({
         type: actions.likeGetData().type,
@@ -109,6 +109,7 @@ export function* createPost(action) {
     config: { headers: { 'Content-Type': 'multipart/form-data' } },
   });
   const { data } = action.payload;
+  console.log('****//-/*/-*/-*/*-/-*/-/*-/-/-//*createPost', data);
   try {
     const response = yield call([Axios, 'request'], dataForm(data));
     yield put({
