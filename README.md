@@ -8,13 +8,7 @@
  
 ### React Redux Redux-saga React-Router Node.js Express.js MySQL Sequelize.js Webpack Babel JWT NodeMail Multer, MulterS3(image upload) 등을 이용하여 인스타그램 웹을 구현
 
-webpack과 babel을 이용하여 개발환경을 구축하고, 인스타그램의 주요기능(회원가입, 로그인, 메일을 통한 비밀번호찾기, 포스트등록, 좋아요, 댓글, 등)을 구현 aws를 이용하여 배포.
- 
- Client hosted using AWS S3 Bucket <br>
- Server hosted on AWS EC2, Elastic Beanstalk<br>
- DB hosted on AWS RDS and S3<br>
- 
- ### 데모 <a href="http://cloning-instagram-app.s3.ap-northeast-2.amazonaws.com/index.html">바로가기 </a> (id: test, pass: test)
+webpack과 babel을 이용하여 개발환경을 구축하고, 인스타그램의 주요기능(회원가입, 로그인, 메일을 통한 비밀번호찾기, 포스트등록, 좋아요, 댓글, 등)을 구현.
  
  ### 회원가입
  <img src="./Demo/회원가입!.gif" />
@@ -26,6 +20,7 @@ webpack과 babel을 이용하여 개발환경을 구축하고, 인스타그램�
 <img src="./Demo/로그인 및 프로필수정.gif" />
 알맞은 아이디와 비밀번호로 로그인을 시도한다.<br>
 확인이 되면 Feed페이지로 이동이되고 네비게이션 우측을 클릭하면 마이페이지로 이동을 하여 정보를 수정 할 수 있다.
+쿠키에 저장된 토큰에 의해 로그인이 되어있다면 feed페이지로 자동 이동한다.
 
 ### 새로운 포스트만들기 및 반응형 모달
 <img src="./Demo/새로운 포스트만들기 및 반응형모달.gif" />
@@ -55,3 +50,8 @@ feed에서 포스트의 이름을 누르면 다른유저의 페이지로 이동�
 ### 비밀번호 찾기
 로그인 페이지에서 비밀번호 찾기를 클릭하고 아이디와 가입시 입력한 이메일을 입력하고 일치한다면 이메일로 변경된 비밀번호가 전송된다.<br>
 추후에 비밀번호 변경도 추가할 
+
+### 리액트라우터 적용 및 리덕스 적용
+<img src="./Demo/리액트라우터!.gif" />
+우측에 Redux tool을 이용하여 Redux를 적용한 것을 확인 할 수 있다.
+또한, React-Router를 이용하여 다양한 진입점을 통하여 접속가능 하다.
