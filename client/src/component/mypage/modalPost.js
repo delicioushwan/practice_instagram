@@ -9,11 +9,9 @@ class modalPost extends Component {
   updateMyPage = state => this.props.MyPage.setState(state);
 
   render = () => {
-    const { post, updateApp } = this.props;
-    const { currentPage } = this.props;
+    const { post, history, currentPage } = this.props;
     const { posts } = currentPage === 'MyPage' ? this.props.mypage : this.props.feed;
-    const { loggedIn } = this.props.feed;
-    const userInfo = loggedIn;
+    const userInfo = this.props.feed.loggedIn;
 
     const getPost = posts[posts.findIndex(x => x.id === post.id)];
     const hitHeart = getPost.likes.findIndex(x => x.user_id === Number(userInfo)) !== -1;
@@ -25,7 +23,7 @@ class modalPost extends Component {
           <div className="right_container">
             <div>
               <div style={{ background: post.users.main_image ? `url(${post.users.main_image}) center center / cover no-repeat` : 'red', width: '32px', height: '32px', margin: 'auto 20px auto 0', borderRadius: '50%' }} />
-              <span onClick={() => updateApp && updateApp({ currentPage: 'MyPage' })}>{post.users.name}</span>
+              <span onClick={() => history.push(`/mypage/${post.users.user_account}`)}>{post.users.name}</span>
             </div>
             <div>
               <div>

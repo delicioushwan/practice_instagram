@@ -23,7 +23,10 @@ class Feed extends Component {
     this.props.currentpage('Feed');
   }
 
-  modalOpen = open => this.setState({ show: open });
+  modalOpen = (open) => {
+    this.setState({ show: open });
+    this.props.clearBundle();
+  }
 
   render = () => {
     const { show } = this.state;
@@ -35,17 +38,17 @@ class Feed extends Component {
           <div>
             {posts.map((post, i) => (
               <div key={i} className="feed_post">
-                <Head post={post} Feed={this} history={this.props.history} updateApp={this.updateApp} />
-                <Picture pictures={post.pictures} Feed={this} />
-                <Like post={post} Feed={this} />
+                <Head post={post} history={this.props.history} />
+                <Picture pictures={post.pictures} />
+                <Like post={post} />
                 <Comment post={post} Feed={this} />
-                <InputComment post={post} Feed={this} />
+                <InputComment post={post} />
               </div>
             ))}
           </div>
         </div>
         <Modal show={show} close={() => this.modalOpen(false)}>
-          {bundle && <ModalPost post={bundle} MyPage={this} updateApp={this.updateApp} />}
+          {show && bundle && <ModalPost post={bundle} history={this.props.history} />}
         </Modal>
       </div>
     );
@@ -57,6 +60,7 @@ const mapStateToProps = state => state;
 const mapDispatchToProps = dispatch => ({
   test: () => dispatch(actions.requestFeed()),
   currentpage: page => dispatch(actions.currentpage(page)),
+  clearBundle: () => dispatch(actions.clearBundle()),
 });
 
 export default connect(

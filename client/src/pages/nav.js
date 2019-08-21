@@ -6,9 +6,9 @@ import '../style/style.css';
 
 class Nav extends Component {
   movePage = () => {
-    const { loggedIn } = this.props.feed;
+    const { loggedIn, loggedUser } = this.props.feed;
     this.props.goToMypage(loggedIn);
-    this.props.history.push(`/mypage/${loggedIn}`);
+    this.props.history.push(`/mypage/${loggedUser}`);
   };
 
   render() {

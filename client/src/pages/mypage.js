@@ -34,7 +34,10 @@ class MyPage extends Component {
     }
   }
 
-  modalOpen = open => this.setState({ show: open });
+  modalOpen = (open) => {
+    this.setState({ show: open });
+    this.props.clearBundle();
+  }
 
   render = () => {
     const { show } = this.state;
@@ -49,7 +52,7 @@ class MyPage extends Component {
           </div>
         </div>
         <Modal show={show} close={() => this.modalOpen(false)}>
-          {this.state.onStage === 'bundle' ? bundle && <ModalPost post={bundle} MyPage={this} />
+          {this.state.onStage === 'bundle' ? show && bundle && <ModalPost post={bundle} history={this.props.history} />
             : this.state.onStage === 'createPost' ? <CreatePost MyPage={this} />
               : this.state.onStage === 'edit' ? <EditProfile MyPage={this} /> : null}
         </Modal>
@@ -63,6 +66,7 @@ const mapStateToProps = state => state;
 const mapDispatchToProps = dispatch => ({
   test: userId => dispatch(actions.requestMypage(userId)),
   currentpage: page => dispatch(actions.currentpage(page)),
+  clearBundle: () => dispatch(actions.clearBundle()),
 });
 
 export default connect(

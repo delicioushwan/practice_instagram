@@ -5,8 +5,6 @@ import * as actions from '../../actions';
 class CommentInput extends Component {
   state ={ commentInput: '' }
 
-  updateMyPage = state => this.props.MyPage.setState(state);
-
   render = () => {
     const { post } = this.props;
     const { currentPage } = this.props;

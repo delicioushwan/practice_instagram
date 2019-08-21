@@ -5,8 +5,6 @@ import * as actions from '../../actions';
 class CommentInput extends Component {
   state ={ commentInput: '' }
 
-  updateFeed = state => this.props.Feed.setState(state)
-
   render = () => {
     const { post } = this.props;
     const { currentPage } = this.props;
@@ -32,11 +30,13 @@ class CommentInput extends Component {
   }
 }
 
+const mapStateToProps = state => state;
+
 const mapDispatchToProps = dispatch => ({
   createComment: data => dispatch(actions.createComment(data)),
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(CommentInput);

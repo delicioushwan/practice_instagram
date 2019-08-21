@@ -19,5 +19,6 @@ export const createPost = createAction(types.CREATE_POST);
 
 // modalPost
 export const getBundle = createAction(types.GET_BUNDLE);
+export const clearBundle = createAction(types.CLEAR_BUNDLE);
 
 export const currentpage = createAction(types.CURRENTPAGE);
