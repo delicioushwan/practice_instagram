@@ -7,17 +7,16 @@ export default (props) => {
   const { close, children } = props;
   return (
     <div className="center_wrap1" style={{ display: show ? 'flex' : 'none' }}>
-      <div>
-        <div className="center_wrap2">
+      <div onClick={close}>
+        <span
+          className="close1"
+          onClick={close}
+        />
+        <div className="center_wrap2" onClick={e => e.stopPropagation()}>
           <span
             className="close"
             onClick={close}
           />
-          <span
-            className="close1"
-            onClick={close}
-          />
-
           <div>instagram</div>
           <div className="modal">
             { children }
