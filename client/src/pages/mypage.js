@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
-import { hot } from 'react-hot-loader';
+import { connect } from 'react-redux';
 import '../style/mypage.css';
 import ProfileBig from '../component/mypage/profileBig';
 import Posts from '../component/mypage/posts';
@@ -8,6 +7,9 @@ import Modal from '../component/Modal';
 import ModalPost from '../component/mypage/modalPost';
 import CreatePost from '../component/mypage/CreatePost';
 import EditProfile from '../component/mypage/EditProfile';
+import * as actions from '../actions';
+import Nav from './nav';
+
 
 class MyPage extends Component {
   constructor(props) {
@@ -21,52 +23,36 @@ class MyPage extends Component {
     };
   }
 
-  updateApp = state => this.props.App.setState(state);
-
-  setMyPage = (feed) => {
-    Axios.request({
-      method: 'GET',
-      url: 'http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/mypage',
-      params: { feed },
-      withCredentials: true,
-    })
-      .then(res => this.setState({
-        posts: res.data.posts,
-        user: res.data.user,
-        on: Number(res.data.on),
-        followers: res.data.followers,
-        followings: res.data.followings,
-      }))
-      .catch(() => this.updateApp({ currentPage: 'Home' }));
-  }
-
   componentDidMount = () => {
-    const { feed } = this.props.App.state;
-    this.setMyPage(feed);
-    this.updateApp({ nav: null });
+    this.props.test(this.props.match.params.id);
+    this.props.currentpage('MyPage');
   }
 
-  componentWillUpdate = () => {
-    if (this.props.App.state.nav === 'nav') {
-      this.setMyPage();
-      this.updateApp({ nav: null, feed: this.state.on });
+  componentDidUpdate = (prev) => {
+    if (prev.mypage.mypageUserId !== this.props.mypage.mypageUserId) {
+      return this.props.test(this.props.mypageUserId);
     }
   }
 
-  modalOpen = open => this.setState({ show: open });
+  modalOpen = (open) => {
+    this.setState({ show: open });
+    this.props.clearBundle();
+  }
 
   render = () => {
-    const { posts, user, show, bundle } = this.state;
+    const { show } = this.state;
+    const { posts, pageUser, bundle } = this.props.mypage;
     return (
       <div className="mypage">
+        <Nav history={this.props.history} />
         <div className="mypage_container">
           <div>
-            {user && <ProfileBig user={user} MyPage={this} />}
+            {pageUser && <ProfileBig user={pageUser} MyPage={this} />}
             <Posts posts={posts} MyPage={this} />
           </div>
         </div>
         <Modal show={show} close={() => this.modalOpen(false)}>
-          {this.state.onStage === 'bundle' ? bundle && <ModalPost post={bundle} MyPage={this} />
+          {this.state.onStage === 'bundle' ? show && bundle && <ModalPost post={bundle} history={this.props.history} />
             : this.state.onStage === 'createPost' ? <CreatePost MyPage={this} />
               : this.state.onStage === 'edit' ? <EditProfile MyPage={this} /> : null}
         </Modal>
@@ -75,4 +61,15 @@ class MyPage extends Component {
   }
 }
 
-export default hot(module)(MyPage);
+const mapStateToProps = state => state;
+
+const mapDispatchToProps = dispatch => ({
+  test: userId => dispatch(actions.requestMypage(userId)),
+  currentpage: page => dispatch(actions.currentpage(page)),
+  clearBundle: () => dispatch(actions.clearBundle()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(MyPage);

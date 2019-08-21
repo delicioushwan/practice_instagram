@@ -1,26 +1,17 @@
 import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
-import Axios from 'axios';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
-export default hot(module)(class extends Component {
-  updateFeed = state => this.props.Feed.setState(state)
-
+class Like extends Component {
   render = () => {
     const { likes, id } = this.props.post;
-    const { on, currentPage } = this.props.Feed.state;
-    const data = { post_id: id, currentPage };
-    const like = () => {
-      Axios.request({
-        method: 'POST',
-        url: 'http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/mypage/like',
-        data,
-        withCredentials: true,
-      }).then(result => this.updateFeed({ posts: result.data.posts, on: Number(result.data.on) }));
-    };
-    const hitHeart = likes.findIndex(x => x.user_id === Number(on)) !== -1;
+    const { currentPage } = this.props;
+    const { loggedIn } = this.props.feed;
+
+    const hitHeart = likes.findIndex(x => x.user_id === Number(loggedIn)) !== -1;
     return (
       <div className="feed_like">
-        <div className={hitHeart ? 'hit_heart' : 'empty_heart'} onClick={like} />
+        <div className={hitHeart ? 'hit_heart' : 'empty_heart'} onClick={() => this.props.like({ post_id: id, currentPage })} />
         <div>
           <span>좋아요</span>
           <span>{likes.length}</span>
@@ -29,4 +20,15 @@ export default hot(module)(class extends Component {
       </div>
     );
   }
+}
+
+const mapStateToProps = state => state;
+
+const mapDispatchToProps = dispatch => ({
+  like: data => dispatch(actions.likeOnMypage(data)),
 });
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Like);

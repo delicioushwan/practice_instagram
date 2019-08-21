@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
+import { connect } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import FollowButton from './FollowButton';
 
 
-export default hot(module)(class extends Component {
-  state={}
-
-  static getDerivedStateFromProps(nextProps) {
-    return nextProps;
-  }
-
-
+class ProfileBig extends Component {
   updateMyPage = state => this.props.MyPage.setState(state);
 
   changeStage = (stage) => {
@@ -21,10 +14,10 @@ export default hot(module)(class extends Component {
 
   render = () => {
     const { main_image, about, name } = this.props.user;
-    const { posts, on, followers, followings } = this.props.MyPage.state;
-    const { feed } = this.props.MyPage.props.App.state;
+    const { posts, followers, followings, pageUser } = this.props.mypage;
+    const { loggedIn } = this.props.feed;
     const buttonSelector = () => {
-      if (feed === undefined || feed === on) {
+      if (pageUser.id === Number(loggedIn)) {
         return <ProfileButton MyPage={this.props.MyPage} />;
       }
       return <FollowButton MyPage={this.props.MyPage} />;
@@ -70,4 +63,11 @@ export default hot(module)(class extends Component {
       </div>
     );
   }
-});
+}
+
+const mapStateToProps = state => state;
+
+export default connect(
+  mapStateToProps,
+  null,
+)(ProfileBig);

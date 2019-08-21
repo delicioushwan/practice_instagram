@@ -1,26 +1,22 @@
 import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
-import Axios from 'axios';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
-export default hot(module)(class extends Component {
+class CommentInput extends Component {
   state ={ commentInput: '' }
-
-  updateMyPage = state => this.props.MyPage.setState(state);
 
   render = () => {
     const { post } = this.props;
-    const { currentPage, feed } = this.props.MyPage.state;
-    const data = { comment: this.state.commentInput, post_id: post.id, currentPage, feed };
+    const { currentPage } = this.props;
     const createComment = () => {
-      Axios.request({
-        method: 'POST',
-        url: 'http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/mypage/createComment',
-        data,
-        withCredentials: true,
-      }).then(result => this.updateMyPage({ posts: result.data.posts }));
+      this.props.createComment({
+        comment: this.state.commentInput,
+        post_id: post.id,
+        currentPage,
+        feed: post.userId,
+      });
       this.setState({ commentInput: '' });
     };
-
     return (
       <input
         onKeyPress={e => e.key === 'Enter' && createComment()}
@@ -30,4 +26,15 @@ export default hot(module)(class extends Component {
       />
     );
   }
+}
+
+const mapPropstoState = state => state;
+
+const mapDispatchToProps = dispatch => ({
+  createComment: data => dispatch(actions.createComment(data)),
 });
+
+export default connect(
+  mapPropstoState,
+  mapDispatchToProps,
+)(CommentInput);

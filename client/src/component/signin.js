@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../style/signin.css';
 import { hot } from 'react-hot-loader';
+import { Redirect } from 'react-router-dom';
 import Axios from 'axios';
 import Modal from './Modal';
 import SignUp from './SignUp';
@@ -8,8 +9,6 @@ import FindPassword from './FindPassword';
 
 class Signin extends Component {
   state = {};
-
-  updateApp = state => this.props.App.setState(state)
 
   update = state => this.props.home.setState(state)
 
@@ -30,13 +29,14 @@ class Signin extends Component {
       .catch(err => err.response);
   };
 
+  gotofeed = () => <Redirect to="/feed" />
+
   submit = () => {
-    this.fetch('http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/home/signin', 'post', {}, this.form)
+    this.fetch('http://localhost:4000/home/signin', 'post', {}, this.form)
       .then((result) => {
         if (result.data.data === 'ok') {
-          return this.updateApp({ currentPage: 'Feed', user: result.data.user });
-        }
-        if (result.data === 'invalid') {
+          this.props.home.props.history.push('/feed');
+        } else if (result.data === 'invalid') {
           this.update({ signIn: '아이디와 비밀번호를 확인하시고 다시 로그인 하세요.' });
         } else {
           this.update({ signIn: '서버에 오류가 발생하였습니다.' });
@@ -59,7 +59,7 @@ class Signin extends Component {
           <div>
             <div>
               <div>instagram</div>
-              <form ref={(node) => { this.form = node; }}>
+              <form action="/feed" ref={(node) => { this.form = node; }}>
                 <div>
                   <input name="signInUserId" type="text" placeholder="  사용자 아이디" onChange={e => inputFn(e, 'signInUserIdInput')} value={signInUserIdInput} />
                 </div>

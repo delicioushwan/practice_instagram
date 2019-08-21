@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
       where: { user_id: userInfo() },
       include: [
         { model: models.likes, as: 'likes', attributes: ['user_id'] },
-        { model: models.users, as: 'users', attributes: ['name', 'main_image'] },
+        { model: models.users, as: 'users', attributes: ['name', 'main_image', 'user_account'] },
         {
           model: models.comments,
           as: 'comments',

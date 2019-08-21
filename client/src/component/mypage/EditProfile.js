@@ -14,14 +14,14 @@ export default hot(module)(class extends Component {
     const inputHandler = e => this.setState({ input: e.target.value });
     const inputPic = e => this.setState({ inputPic: e.target.files[0] });
     const logOut = () => {
-      Axios.get('http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/home/logOut', { withCredentials: true })
+      Axios.get('http://localhost:4000/home/logOut', { withCredentials: true })
         .then(() => this.update({ user: '', currentPage: 'Home' }));
     };
 
     const editSomething = (url) => {
       const { input } = this.state;
       Axios.request({
-        url: `http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/Mypage/${url}`,
+        url: `http://localhost:4000/Mypage/${url}`,
         method: 'POST',
         data: { input },
         withCredentials: true,
@@ -37,7 +37,7 @@ export default hot(module)(class extends Component {
       data.append('main_image', this.state.inputPic);
 
       Axios.request({
-        url: 'http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/mypage/editMainPic',
+        url: 'http://localhost:4000/mypage/editMainPic',
         method: 'POST',
         data,
         withCredentials: true,

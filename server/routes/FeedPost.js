@@ -4,8 +4,6 @@ const models = require('../database/models');
 module.exports = (req, res) => {
   try {
     models.posts.findAll({
-      offset: 0,
-      limit: 10,
       include: [
         {
           model: models.comments,
@@ -17,7 +15,7 @@ module.exports = (req, res) => {
           ],
         },
         { model: models.likes, as: 'likes', attributes: ['user_id'] },
-        { model: models.users, as: 'users', attributes: ['name', 'main_image'] },
+        { model: models.users, as: 'users', attributes: ['name', 'main_image', 'user_account'] },
         { model: models.pictures, as: 'pictures', attributes: ['pic'] },
       ],
       order: [['id', 'DESC'], ['comments', 'id', 'DESC'], ['pictures', 'id']],

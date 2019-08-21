@@ -147,8 +147,8 @@
   display:block;
   position: absolute;
   background: url('../../images/cancel.png');
-  right: 10px;
-  top: 10px;
+  top: 19px;
+  right: -24px;
   width: 18px;
   height: 18px;
   background-size: contain;

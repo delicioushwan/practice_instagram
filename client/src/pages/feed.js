@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
-import { hot } from 'react-hot-loader';
+import { connect } from 'react-redux';
 import '../style/feed.css';
 import Head from '../component/feed/Head';
 import Picture from '../component/feed/Picture';
@@ -9,6 +8,9 @@ import Comment from '../component/feed/Comment';
 import InputComment from '../component/feed/InputComment';
 import Modal from '../component/Modal';
 import ModalPost from '../component/mypage/modalPost';
+// eslint-disable-next-line import/no-cycle
+import Nav from './nav';
+import * as actions from '../actions';
 
 
 class Feed extends Component {
@@ -17,40 +19,51 @@ class Feed extends Component {
   updateApp = state => this.props.App.setState(state)
 
   componentDidMount = () => {
-    Axios.request({
-      method: 'GET',
-      url: 'http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/feed',
-      withCredentials: true,
-    })
-      .then(res => this.setState({ posts: res.data.posts, on: Number(res.data.on) }))
-      .catch(() => this.updateApp({ currentPage: 'Home' }));
+    this.props.test();
+    this.props.currentpage('Feed');
   }
 
-  modalOpen = open => this.setState({ show: open });
+  modalOpen = (open) => {
+    this.setState({ show: open });
+    this.props.clearBundle();
+  }
 
   render = () => {
-    const { posts, show, bundle } = this.state;
+    const { show } = this.state;
+    const { posts, bundle } = this.props.feed;
     return (
       <div className="feed">
+        <Nav history={this.props.history} />
         <div className="feed_container">
           <div>
             {posts.map((post, i) => (
               <div key={i} className="feed_post">
-                <Head post={post} Feed={this} updateApp={this.updateApp} />
-                <Picture pictures={post.pictures} Feed={this} />
-                <Like post={post} Feed={this} />
+                <Head post={post} history={this.props.history} />
+                <Picture pictures={post.pictures} />
+                <Like post={post} />
                 <Comment post={post} Feed={this} />
-                <InputComment post={post} Feed={this} />
+                <InputComment post={post} />
               </div>
             ))}
           </div>
         </div>
         <Modal show={show} close={() => this.modalOpen(false)}>
-          {bundle && <ModalPost post={bundle} MyPage={this} updateApp={this.updateApp} />}
+          {show && bundle && <ModalPost post={bundle} history={this.props.history} />}
         </Modal>
       </div>
     );
   }
 }
 
-export default hot(module)(Feed);
+const mapStateToProps = state => state;
+
+const mapDispatchToProps = dispatch => ({
+  test: () => dispatch(actions.requestFeed()),
+  currentpage: page => dispatch(actions.currentpage(page)),
+  clearBundle: () => dispatch(actions.clearBundle()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Feed);

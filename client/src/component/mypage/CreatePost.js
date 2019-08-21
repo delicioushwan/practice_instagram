@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
-import Axios from 'axios';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
 
-export default hot(module)(class extends Component {
+class CreatePost extends Component {
   state = {
     picture: '',
     imgsUrl: [],
@@ -20,17 +20,9 @@ export default hot(module)(class extends Component {
     }
     data.append('content', this.state.content);
 
-    Axios.request({
-      url: 'http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/mypage/createPost',
-      method: 'POST',
-      data,
-      withCredentials: true,
-      config: { headers: { 'Content-Type': 'multipart/form-data' } },
-    })
-      .then((result) => {
-        this.updateMyPage({ posts: result.data.posts, show: false });
-        this.setState({ picture: '', imgsUrl: '' });
-      });
+    this.props.createPost({ data });
+    this.updateMyPage({ show: false });
+    this.setState({ picture: '', imgsUrl: '' });
   }
 
   pickPictures = (e) => {
@@ -69,4 +61,13 @@ export default hot(module)(class extends Component {
       </form>
     </div>
   );
+}
+
+const mapDispatchToProps = dispatch => ({
+  createPost: data => dispatch(actions.createPost(data)),
 });
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(CreatePost);

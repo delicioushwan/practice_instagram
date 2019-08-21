@@ -205,8 +205,7 @@
   display:block;
   position: absolute;
   background: url('../../images/cancel.png');
-  right: 10px;
-  top: 10px;
+  right: -24px;
   width: 18px;
   height: 18px;
   background-size: contain;
@@ -228,7 +227,7 @@
   max-height: 100%;
 }
 
-.mypage .center_wrap2 > div:nth-child(2) {
+.mypage .center_wrap2 > div:nth-child(3) {
   display:none;
 }
 

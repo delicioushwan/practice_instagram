@@ -1,27 +1,19 @@
 import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
-import Axios from 'axios';
+import { connect } from 'react-redux';
 import Comment from './comments';
 import CommentInput from './commentInput';
 import CarouselPictures from './CarouselPictures';
+import * as actions from '../../actions';
 
-export default hot(module)(class extends Component {
+class modalPost extends Component {
   updateMyPage = state => this.props.MyPage.setState(state);
 
   render = () => {
-    const { post, updateApp } = this.props;
-    const { posts, on, currentPage, feed } = this.props.MyPage.state;
-    const userInfo = on;
-    const data = { post_id: post.id, currentPage, feed };
-    const like = () => {
-      Axios.request({
-        method: 'POST',
-        url: 'http://cloninginstagram-env.qxdnpfc8ws.us-east-2.elasticbeanstalk.com/mypage/like',
-        data,
-        withCredentials: true,
-      }).then(result => this.updateMyPage({ posts: result.data.posts }));
-    };
-    const getPost = posts[posts.findIndex(x => x.id === this.props.post.id)];
+    const { post, history, currentPage } = this.props;
+    const { posts } = currentPage === 'MyPage' ? this.props.mypage : this.props.feed;
+    const userInfo = this.props.feed.loggedIn;
+
+    const getPost = posts[posts.findIndex(x => x.id === post.id)];
     const hitHeart = getPost.likes.findIndex(x => x.user_id === Number(userInfo)) !== -1;
 
     return (
@@ -31,7 +23,7 @@ export default hot(module)(class extends Component {
           <div className="right_container">
             <div>
               <div style={{ background: post.users.main_image ? `url(${post.users.main_image}) center center / cover no-repeat` : 'red', width: '32px', height: '32px', margin: 'auto 20px auto 0', borderRadius: '50%' }} />
-              <span onClick={() => updateApp && updateApp({ currentPage: 'MyPage', feed: post.user_id })}>{post.users.name}</span>
+              <span onClick={() => history.push(`/mypage/${post.users.user_account}`)}>{post.users.name}</span>
             </div>
             <div>
               <div>
@@ -46,11 +38,11 @@ export default hot(module)(class extends Component {
                 </div>
               </div>
               <div>
-                {getPost.comments.map((com, i) => <Comment key={i} comment={com} MyPage={this.props.MyPage} userInfo={userInfo} />)}
+                {getPost.comments.map((com, i) => <Comment key={i} comment={com} post={post} userInfo={userInfo} />)}
               </div>
             </div>
             <div>
-              <span className={hitHeart ? 'hit_heart' : 'empty_heart'} onClick={like} />
+              <span className={hitHeart ? 'hit_heart' : 'empty_heart'} onClick={() => this.props.like({ post_id: post.id, currentPage, feed: post.userId })} />
               <div>
                 <span>좋아요</span>
                 <span style={{ marginLeft: '5px' }}>{getPost.likes.length}</span>
@@ -66,4 +58,15 @@ export default hot(module)(class extends Component {
 
     );
   }
+}
+
+const mapStateToProps = state => state;
+
+const mapDispatchToProps = dispatch => ({
+  like: data => dispatch(actions.likeOnMypage(data)),
 });
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(modalPost);

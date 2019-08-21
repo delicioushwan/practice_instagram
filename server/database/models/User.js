@@ -46,9 +46,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
   }, {
-      timestamps: true,
-      underscored: true,
-    });
+    timestamps: true,
+    underscored: true,
+  });
   User.associate = function (models) {
     User.hasMany(models.comments, { as: 'comments' });
     User.hasMany(models.posts, { as: 'posts' });
