@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
+import { connect } from 'react-redux';
 import Axios from 'axios';
 
-export default hot(module)(class extends Component {
-  updateMyPage = state => this.props.MyPage.setState(state);
+const mapStateToProps = state => state;
 
-
+export default connect(
+  mapStateToProps,
+)(class extends Component {
   render = () => {
-    const { feed, on, followers } = this.props.MyPage.state;
-    const data = { feed, on };
+    const { followers } = this.props.mypage;
+    const { loggedIn } = this.props.feed;
+    const data = { on: loggedIn };
     const follow = () => {
       Axios.request({
         method: 'POST',
         url: 'http://localhost:4000/mypage/Follow',
         data,
         withCredentials: true,
-      }).then(result => this.updateMyPage({ followers: result.data.followers, followings: result.data.followings }));
+      }).then(result => this.setState({ followers: result.data.followers, followings: result.data.followings }));
     };
-    const checkFollowing = followers !== undefined && followers.findIndex(follower => follower.follower_id === on) !== -1;
+    const checkFollowing = followers !== undefined && followers.findIndex(follower => follower.follower_id === loggedIn) !== -1;
     return (
       <div>
         <button className={checkFollowing ? ' follow_button' : ''} type="button" onClick={follow}>팔로우</button>

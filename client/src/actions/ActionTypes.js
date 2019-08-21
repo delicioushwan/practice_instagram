@@ -14,3 +14,6 @@ export const CREATE_POST = 'CREATE_POST';
 
 export const GET_BUNDLE = 'GET_BUNDLE';
 export const GO_TO_MYPAGE = 'GO_TO_MYPAGE';
+export const CLEAR_BUNDLE = 'CLEAR_BUNDLE';
+
+export const CURRENTPAGE = 'CURRENTPAGE';

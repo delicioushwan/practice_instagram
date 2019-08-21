@@ -10,6 +10,12 @@ class Home extends Component {
     };
   }
 
+  componentDidMount = () => {
+    if (document.cookie.indexOf('user=') !== -1) {
+      this.props.history.push('/feed');
+    }
+  }
+
   inputHandler = (e, input) => {
     this.setState({ [input]: e.target.value });
   };

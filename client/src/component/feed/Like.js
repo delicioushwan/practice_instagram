@@ -3,11 +3,9 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
 class Like extends Component {
-  updateFeed = state => this.props.Feed.setState(state)
-
   render = () => {
     const { likes, id } = this.props.post;
-    const { currentPage } = this.props.Feed.state;
+    const { currentPage } = this.props;
     const { loggedIn } = this.props.feed;
 
     const hitHeart = likes.findIndex(x => x.user_id === Number(loggedIn)) !== -1;
