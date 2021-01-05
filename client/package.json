@@ -42,7 +42,7 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "bluebird": "^3.5.5",
     "immutability-helper": "^3.0.1",
     "nodemailer": "^6.2.1",
